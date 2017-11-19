@@ -8,6 +8,8 @@
 	},
 	"dependencies": {
 		"@shoutem/ui": "^0.21.3",
+		"babel-plugin-module-resolver": "^3.0.0",
+		"eslint-import-resolver-node": "^0.3.1",
 		"react": "16.0.0",
 		"react-native": "0.50.3",
 		"react-redux": "^5.0.6",
@@ -20,7 +22,7 @@
 		"babel-preset-react-native": "4.0.0",
 		"eslint": "^4.5.0",
 		"eslint-config-airbnb": "^15.0.2",
-		"eslint-plugin-import": "^2.2.0",
+		"eslint-plugin-import": "^2.8.0",
 		"eslint-plugin-jest": "^20.0.3",
 		"eslint-plugin-jsx-a11y": "^6.0.2",
 		"eslint-plugin-promise": "^3.5.0",
