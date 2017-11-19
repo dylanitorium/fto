@@ -4,4 +4,4 @@ import { AsyncStorage } from 'react-native';
 import thunk from 'redux-thunk';
 
 export const store = createStore(combineReducers(), applyMiddleware(thunk), autoRehydrate());
-export const persistor = persistStore(store, { storage: AsyncStorage });
+export const persistor = persistStore(store, { key: 'app', storage: AsyncStorage });
