@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"@shoutem/ui": "^0.21.3",
+		"babel-eslint": "^8.0.2",
 		"babel-plugin-module-resolver": "^3.0.0",
 		"eslint-import-resolver-node": "^0.3.1",
 		"react": "16.0.0",
@@ -15,6 +16,7 @@
 		"react-redux": "^5.0.6",
 		"react-router-native": "^4.2.0",
 		"redux": "^3.7.2",
+		"redux-persist": "^5.4.0",
 		"redux-thunk": "^2.2.0"
 	},
 	"devDependencies": {
