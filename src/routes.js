@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-native-router';
+import { Switch, Route } from 'react-router-native';
 import PrivateRoute from './components/connected/PrivateRoute';
 
 export default () => (

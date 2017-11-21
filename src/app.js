@@ -13,7 +13,7 @@ const App = () => (
       loading={<Loader />}
     >
       <NativeRouter>
-        <Routes />
+          <Routes />
       </NativeRouter>
     </PersistGate>
   </Provider>
