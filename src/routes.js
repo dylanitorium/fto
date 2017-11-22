@@ -2,11 +2,15 @@ import React from 'react';
 import { Switch, Route } from 'react-router-native';
 import PrivateRoute from './components/connected/PrivateRoute';
 
+// Screen
+import Onboard from './components/connected/screens/Onboard';
+
+
 export default () => (
   <Switch>
-    <PrivateRoute path={'/'} exact />
+    <PrivateRoute path={'/'} exact component={Onboard} />
 
-    <Route path={'/onboard'} />
+    <Route path={'/onboard'} component={Onboard} />
     <Route path={'/onboard/bench'} />
     <Route path={'/onboard/squat'} />
     <Route path={'/onboard/overhead'} />

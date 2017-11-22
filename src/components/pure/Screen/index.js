@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Screen } from '@shoutem/ui/components/Screen';
-import NavBar from './Navbar/index';
+import {View} from 'react-native';
+import { Screen as ShoutemScreen } from '@shoutem/ui/components/Screen';
+import NavBar from '../Navbar';
 
-const AppScreen = props => (
-  <Screen>
-    <NavBar {...props} screenTitle={props.screenTitle} />
-    {props.children}
-  </Screen>
+
+const Screen = props => (
+  <View>
+    <ShoutemScreen styleName={'paper'}>
+      <NavBar {...props} screenTitle={props.screenTitle} />
+      {props.children}
+    </ShoutemScreen>
+  </View>
 );
 
-AppScreen.propTypes = {
+Screen.propTypes = {
   screenTitle: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default AppScreen;
+export default Screen;

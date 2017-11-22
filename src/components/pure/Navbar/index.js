@@ -17,16 +17,17 @@ const NavBar = props => (
       }
       return null;
     }}
-    centerComponent={<Title>{props.routeMap[props.currentPath]}</Title>}
+    centerComponent={<Title>{props.screenTitle}</Title>}
     {...props}
   />
 );
 
 NavBar.propTypes = {
-  currentPath: PropTypes.string.isRequired,
-  routeMap: PropTypes.array.isRequired,
+  screenTitle: PropTypes.string.isRequired,
   hasHistory: PropTypes.bool.isRequired,
   onBackPress: PropTypes.func.isRequired,
 };
 
 export default NavBar;
+
+
