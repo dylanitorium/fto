@@ -35,9 +35,7 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
-  screenTitle: 'fivethreeone',
-  hasHistory: false,
-  onBackPress: () => {},
+  screenTitle: 'fivethreeone'
 };
 
 export default NavBar;

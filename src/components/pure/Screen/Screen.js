@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import { Screen as ShoutemScreen } from '@shoutem/ui/components/Screen';
-import { NavBar } from '../Navbar';
+import NavBar from '../../connected/NavBar';
 
 const styles = StyleSheet.create({
   container: {
