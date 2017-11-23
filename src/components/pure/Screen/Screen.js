@@ -6,13 +6,15 @@ import NavBar from '../../connected/NavBar';
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 80 // Nav height + 10
+    paddingTop: 80, // Nav height + 10
+    flexDirection: 'column',
+    height: '100%',
   },
 });
 
 const Screen = props => (
   <ShoutemScreen styleName={'paper'}>
-    <View style={styles.container}>
+    <View style={[styles.container, ...props.style]}>
       <NavBar {...props} screenTitle={props.screenTitle} />
       {props.children}
     </View>
@@ -22,6 +24,11 @@ const Screen = props => (
 Screen.propTypes = {
   screenTitle: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  style: PropTypes.array,
+};
+
+Screen.defaultProps = {
+  style: [],
 };
 
 export default Screen;

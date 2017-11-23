@@ -1,8 +1,8 @@
 import React from 'react';
-import PureOnboard from '../../screens/Onboard';
+import Onboard from '../../screens/Onboard';
 
-const Onboard = () => (
-  <PureOnboard />
+const ConnectOnboard = () => (
+  <Onboard />
 );
 
-export default Onboard;
+export default ConnectOnboard;

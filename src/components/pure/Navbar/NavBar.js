@@ -5,15 +5,14 @@ import { Title } from '@shoutem/ui/components/Text';
 import { Button } from '@shoutem/ui/components/Button';
 import { Icon } from '@shoutem/ui/components/Icon/index';
 import { View } from 'react-native';
+import BackButton from './BackButton';
 
 const NavBar = (props) => {
   let leftComponent;
 
   if (props.hasHistory) {
     leftComponent = (
-      <Button onPress={props.onBackPress}>
-        <Icon name={'back'} />
-      </Button>
+      <BackButton />
     );
   } else {
     leftComponent = (<View />);
@@ -31,7 +30,6 @@ const NavBar = (props) => {
 NavBar.propTypes = {
   screenTitle: PropTypes.string.isRequired,
   hasHistory: PropTypes.bool.isRequired,
-  onBackPress: PropTypes.func.isRequired,
 };
 
 NavBar.defaultProps = {
