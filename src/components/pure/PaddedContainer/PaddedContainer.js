@@ -8,13 +8,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextContainer = props => (
+const PaddedContainer = props => (
   <View {...props} style={[styles.container, ...props.style]} >{props.children}</View>
 );
 
-TextContainer.propTypes = {
+PaddedContainer.propTypes = {
   children: PropTypes.node.isRequired,
+  style: PropTypes.array.isRequired,
 };
 
-export default TextContainer;
+PaddedContainer.defaultProps = {
+  style: [],
+};
+
+export default PaddedContainer;
 

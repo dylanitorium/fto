@@ -1,30 +1,30 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button } from '@shoutem/ui/components/Button';
-import { Text } from '@shoutem/ui/components/Text';
+import { Button, Text, Divider } from '@shoutem/ui';
 import { Screen } from '../pure/Screen';
-import { TextContainer } from '../pure/TextContainer';
+import { PaddedContainer } from '../pure/PaddedContainer';
+
 
 const styles = StyleSheet.create({
   screen: {
-    alignItems: 'center',
     justifyContent: 'center',
   },
-  container: {
-    flex: 1,
+  text: {
+    marginBottom: 5,
   },
 });
 
 const Onboard = props => (
-  <Screen {...props} style={styles.screen} screenTitle={'fivethreeone'}>
-    <TextContainer style={[styles.container]}>
+  <Screen {...props} style={[styles.screen]} screenTitle={'fivethreeone'}>
+    <PaddedContainer>
       <Text>
         {'It looks like you\'re new to fivethreeone. Let\'s enter your weights to get started.'}
       </Text>
-      <Button>
+      <Divider />
+      <Button styleName="secondary">
         <Text>{'Go'}</Text>
       </Button>
-    </TextContainer>
+    </PaddedContainer>
   </Screen>
 );
 
