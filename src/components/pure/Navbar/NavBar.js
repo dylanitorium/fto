@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavigationBar } from '@shoutem/ui';
-import { Title } from '@shoutem/ui/components/Text';
-import { Button } from '@shoutem/ui/components/Button';
-import { Icon } from '@shoutem/ui/components/Icon/index';
+import { NavigationBar, Title } from '@shoutem/ui';
 import { View } from 'react-native';
 import BackButton from './BackButton';
 

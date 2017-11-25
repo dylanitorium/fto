@@ -4,6 +4,7 @@ import PrivateRoute from './components/connected/PrivateRoute';
 
 // Screen
 import Onboard from './components/connected/screens/Onboard';
+import OnboardBench from './components/screens/OnboardBench';
 
 
 export default () => (
@@ -11,7 +12,7 @@ export default () => (
     <PrivateRoute path={'/'} exact component={Onboard} />
 
     <Route path={'/onboard'} component={Onboard} />
-    <Route path={'/onboard/bench'} />
+    <Route path={'/onboard/bench'} component={OnboardBench} />
     <Route path={'/onboard/squat'} />
     <Route path={'/onboard/overhead'} />
     <Route path={'/onboard/deadlift'} />

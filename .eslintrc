@@ -6,9 +6,8 @@
     "jest/globals": true
   },
   "rules": {
-    "react/forbid-prop-types": ['error', { forbid: ["any"] }],
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
-    "react/no-did-mount-set-state": "off",
+    "react/forbid-prop-types": ["error", { "forbid": ["any"] }],
     "global-require": "off",
     "no-console": "off",
     "import/no-extraneous-dependencies": "off",

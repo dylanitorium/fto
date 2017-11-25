@@ -6,14 +6,19 @@ import NavBar from '../../connected/NavBar';
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 80, // Nav height + 10
+    paddingVertical: 90, // Nav height + 10
     flexDirection: 'column',
     height: '100%',
   },
 });
 
 const Screen = props => (
-  <ShoutemScreen styleName={'paper'}>
+  <ShoutemScreen
+    styleName={'paper'}
+    style={{
+      backgroundColor: '#eeeeee',
+    }}
+  >
     <View style={[styles.container, ...props.style]}>
       <NavBar screenTitle={props.screenTitle} />
       {props.children}

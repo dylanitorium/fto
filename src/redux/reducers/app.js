@@ -1,11 +1,15 @@
+// Action Types
 const types = {
   INITIALIZE: 'app/initialize',
 };
 
+
+// Actions
 export const initialize = () => ({
   type: types.INITIALIZE,
 });
 
+// Reducer
 const initialState = {
   initialized: false,
 };
