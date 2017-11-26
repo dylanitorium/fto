@@ -4,7 +4,7 @@ const types = {
 };
 
 
-// Actions
+// Action Creators
 export const initialize = () => ({
   type: types.INITIALIZE,
 });

@@ -20,20 +20,23 @@ const Screen = props => (
     }}
   >
     <View style={[styles.container, ...props.style]}>
-      <NavBar screenTitle={props.screenTitle} />
+      <NavBar hasHistory={props.hasHistory} screenTitle={props.screenTitle} />
       {props.children}
     </View>
   </ShoutemScreen>
 );
 
 Screen.propTypes = {
-  screenTitle: PropTypes.string.isRequired,
+  screenTitle: PropTypes.string,
   children: PropTypes.node.isRequired,
   style: PropTypes.array,
+  hasHistory: PropTypes.bool,
 };
 
 Screen.defaultProps = {
+  screenTitle: '',
   style: [],
+  hasHistory: true,
 };
 
 export default Screen;

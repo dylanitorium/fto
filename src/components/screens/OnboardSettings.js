@@ -11,7 +11,7 @@ const OnboardSettings = props => (
     <PaddedContainer>
       <SetWeightsForm {...props} />
       <Divider />
-      <LinkButton to={props.next} styleName="secondary">
+      <LinkButton to={`/onboard/${props.next}`} beforeRedirect={props.beforeRedirect} styleName="secondary">
         <Text>
           Next
         </Text>
@@ -21,12 +21,27 @@ const OnboardSettings = props => (
 );
 
 OnboardSettings.propTypes = {
-  maxValue: PropTypes.string.isRequired,
-  workingMaxValue: PropTypes.string.isRequired,
-  incrementValue: PropTypes.string.isRequired,
+  maxValue: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
+  workingMaxValue: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
+  incrementValue: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
   onMaxChange: PropTypes.func.isRequired,
   onIncrementChange: PropTypes.func.isRequired,
-  next: PropTypes.string.isRequired,
+  beforeRedirect: PropTypes.func,
+  next: PropTypes.string,
+};
+
+OnboardSettings.defaultProps = {
+  next: '/',
+  beforeRedirect: () => {}
 };
 
 export default OnboardSettings;
