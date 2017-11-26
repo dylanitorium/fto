@@ -7,10 +7,10 @@ import { updateIncrement, updateMax } from '../../../redux/reducers/settings';
 export default connect(
   state => ({
     exercise: EXERCISES.OVERHEAD,
-    next: EXERCISES.DEADLIFT,
     maxValue: state.settings[EXERCISES.OVERHEAD].max,
     workingMaxValue: state.settings[EXERCISES.OVERHEAD].workingMax,
     incrementValue: state.settings[EXERCISES.OVERHEAD].increment,
+    next: `/onboard/${EXERCISES.DEADLIFT}`,
   }),
   {
     onMaxChange: updateMax,

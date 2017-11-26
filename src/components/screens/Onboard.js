@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Text, Divider } from '@shoutem/ui';
 import { Screen } from '../pure/Screen';
 import { PaddedContainer } from '../pure/PaddedContainer';
-import { LinkButton } from '../utility';
+import { Button } from '../pure/Button';
 
 
 const styles = StyleSheet.create({
@@ -22,9 +22,9 @@ const Onboard = props => (
         {'It looks like you\'re new to fivethreeone. Let\'s enter your weights to get started.'}
       </Text>
       <Divider />
-      <LinkButton to={'/onboard/bench'} styleName="secondary">
-        <Text>{'Go'}</Text>
-      </LinkButton>
+      <Button to={'/onboard/bench'} styleName="secondary">
+        Go
+      </Button>
     </PaddedContainer>
   </Screen>
 );

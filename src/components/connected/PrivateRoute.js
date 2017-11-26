@@ -3,7 +3,7 @@ import PrivateRoute from '../utility/PrivateRoute';
 
 const ConnectedPrivateRoute = connect(
   state => ({
-    canEnter: state.app.initialised,
+    canEnter: state.app.initialized,
     redirectTo: '/onboard',
   })
 )(PrivateRoute);

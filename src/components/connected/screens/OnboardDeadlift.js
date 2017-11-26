@@ -11,6 +11,7 @@ export default connect(
     maxValue: state.settings[EXERCISES.DEADLIFT].max,
     workingMaxValue: state.settings[EXERCISES.DEADLIFT].workingMax,
     incrementValue: state.settings[EXERCISES.DEADLIFT].increment,
+    buttonText: 'Finish',
   }),
   {
     onMaxChange: updateMax,

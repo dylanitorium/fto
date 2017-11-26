@@ -18,7 +18,7 @@ const NavBar = (props) => {
   return (
     <NavigationBar
       leftComponent={leftComponent}
-      centerComponent={<Title>{props.screenTitle}</Title>}
+      centerComponent={<Title>{props.screenTitle.toUpperCase()}</Title>}
       {...props}
     />
   )

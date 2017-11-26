@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 import { Text, Divider } from '@shoutem/ui/';
 import { SetWeightsForm } from '../pure/SetWeightsForm';
 import { Screen } from '../pure/Screen';
-import { LinkButton } from '../utility/index';
 import PaddedContainer from '../pure/PaddedContainer/PaddedContainer';
+import { Button } from '../pure/Button/';
 
 const OnboardSettings = props => (
   <Screen {...props}>
     <PaddedContainer>
       <SetWeightsForm {...props} />
       <Divider />
-      <LinkButton to={`/onboard/${props.next}`} beforeRedirect={props.beforeRedirect} styleName="secondary">
-        <Text>
-          Next
-        </Text>
-      </LinkButton>
+      <Button to={props.next} beforeRedirect={props.beforeRedirect} styleName="secondary">
+        {props.buttonText}
+      </Button>
     </PaddedContainer>
   </Screen>
 );
@@ -37,10 +35,12 @@ OnboardSettings.propTypes = {
   onIncrementChange: PropTypes.func.isRequired,
   beforeRedirect: PropTypes.func,
   next: PropTypes.string,
+  buttonText: PropTypes.string,
 };
 
 OnboardSettings.defaultProps = {
   next: '/',
+  buttonText: 'Next',
   beforeRedirect: () => {}
 };
 

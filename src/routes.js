@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-native';
 import PrivateRoute from './components/connected/PrivateRoute';
 
 // Screen
+import Dashboard from './components/connected/screens/Dashboard';
+
 import Onboard from './components/connected/screens/Onboard';
 import OnboardBench from './components/connected/screens/OnboardBench';
 import OnboardSquat from './components/connected/screens/OnboardSquat';
@@ -12,7 +14,7 @@ import OnboardDeadlift from './components/connected/screens/OnboardDeadlift';
 
 export default () => (
   <Switch>
-    <PrivateRoute path={'/'} exact component={Onboard} />
+    <PrivateRoute path={'/'} exact component={Dashboard} />
 
     <Route exact path={'/onboard'} component={Onboard} />
     <Route path={'/onboard/bench'} component={OnboardBench} />
