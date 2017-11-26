@@ -4,7 +4,7 @@ import { Text, Row } from '@shoutem/ui';
 import { Link } from 'react-router-native';
 import { Button } from '../Button';
 
-const WeekItem = props => (
+const ExceriseItem = props => (
   <Link to={props.to}>
     <Row>
       <Text>{props.children}</Text>
@@ -13,13 +13,13 @@ const WeekItem = props => (
   </Link>
 );
 
-WeekItem.propTypes = {
+ExceriseItem.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-WeekItem.defaultProps = {
+ExceriseItem.defaultProps = {
 
 };
 
-export default WeekItem;
+export default ExceriseItem;

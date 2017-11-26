@@ -4,6 +4,7 @@ export const ROUTE_MAP = {
   '/onboard/squat': 'Squat',
   '/onboard/overhead': 'Overhead',
   '/onboard/deadlift': 'Deadlift',
+  '/week/1': 'Week One',
 };
 
 export const EXERCISES = {
@@ -11,4 +12,11 @@ export const EXERCISES = {
   SQUAT: 'squat',
   OVERHEAD: 'overhead',
   DEADLIFT: 'deadlift',
+};
+
+export const WEEKS = {
+  ONE: '1',
+  TWO: '2',
+  THREE: '3',
+  FOUR: '4',
 };

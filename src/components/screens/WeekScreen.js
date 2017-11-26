@@ -1,15 +1,15 @@
 import React from 'react';
 import { Screen } from '../pure/Screen';
 import { PaddedContainer } from '../pure/PaddedContainer';
-import { WeekList } from '../pure/Weeks';
+import { ExerciseList } from '../pure/Exercises';
 
 
-const Dashboard = props => (
+const WeekScreen = props => (
   <Screen {...props} screenTitle={'fivethreeone'}>
     <PaddedContainer>
-      <WeekList {...props} />
+      <ExerciseList {...props} />
     </PaddedContainer>
   </Screen>
 );
 
-export default Dashboard;
+export default WeekScreen;
