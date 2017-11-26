@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, Text, Divider } from '@shoutem/ui';
+import { Text, Divider } from '@shoutem/ui';
 import { Screen } from '../pure/Screen';
 import { PaddedContainer } from '../pure/PaddedContainer';
+import { LinkButton } from '../utility';
 
 
 const styles = StyleSheet.create({
@@ -21,9 +22,9 @@ const Onboard = props => (
         {'It looks like you\'re new to fivethreeone. Let\'s enter your weights to get started.'}
       </Text>
       <Divider />
-      <Button styleName="secondary">
+      <LinkButton to={'/onboard/bench'} styleName="secondary">
         <Text>{'Go'}</Text>
-      </Button>
+      </LinkButton>
     </PaddedContainer>
   </Screen>
 );

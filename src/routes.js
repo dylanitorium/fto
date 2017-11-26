@@ -4,18 +4,21 @@ import PrivateRoute from './components/connected/PrivateRoute';
 
 // Screen
 import Onboard from './components/connected/screens/Onboard';
-import OnboardBench from './components/screens/OnboardBench';
+import OnboardBench from './components/connected/screens/OnboardBench';
+import OnboardSquat from './components/connected/screens/OnboardSquat';
+import OnboardOverhead from './components/connected/screens/OnboardOverhead';
+import OnboardDeadlift from './components/connected/screens/OnboardDeadlift';
 
 
 export default () => (
   <Switch>
     <PrivateRoute path={'/'} exact component={Onboard} />
 
-    <Route path={'/onboard'} component={Onboard} />
+    <Route exact path={'/onboard'} component={Onboard} />
     <Route path={'/onboard/bench'} component={OnboardBench} />
-    <Route path={'/onboard/squat'} />
-    <Route path={'/onboard/overhead'} />
-    <Route path={'/onboard/deadlift'} />
+    <Route path={'/onboard/squat'} component={OnboardSquat} />
+    <Route path={'/onboard/overhead'} component={OnboardOverhead} />
+    <Route path={'/onboard/deadlift'} component={OnboardDeadlift} />
 
     <PrivateRoute path={'/week/:week'} />
     <PrivateRoute path={'/week/:week/:exercise'} />

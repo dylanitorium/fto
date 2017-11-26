@@ -1,6 +1,9 @@
 export const ROUTE_MAP = {
   '/onboard': 'fivethreeone',
-  '/onboard/bench': 'Set bench',
+  '/onboard/bench': 'Bench',
+  '/onboard/squat': 'Squat',
+  '/onboard/overhead': 'Overhead',
+  '/onboard/deadlift': 'Deadlift',
 };
 
 export const EXERCISES = {

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
 import { TextInput, Divider } from '@shoutem/ui';
-import { PaddedContainer } from '../PaddedContainer';
-import {InputLabel} from '../InputLabel';
+import { InputLabel } from '../InputLabel';
 
 const SetWeightsForm = props => (
-  <PaddedContainer>
+  <View>
     <InputLabel>{'One Rep Max'}</InputLabel>
     <TextInput
       placeholder={'One Rep Max'}
@@ -25,7 +25,7 @@ const SetWeightsForm = props => (
       onChangeText={value => props.onIncrementChange(props.exercise, value)}
       value={props.incrementValue}
     />
-  </PaddedContainer>
+  </View>
 );
 
 SetWeightsForm.propTypes = {
