@@ -1,5 +1,5 @@
 // Action Types
-import { EXERCISES, SETS, WEEKS } from '../../constants';
+import {EXERCISES, SET_MODIFIER, SET_REPS, SETS, WEEKS} from '../../constants';
 
 const types = {
   START_CYCLE: 'app/cycle/start',
@@ -37,8 +37,12 @@ const initialSetState = {
 const createSetReducer = (week, exersise, set) => ((state = initialSetState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
-    case types.COMPLETE_CYCLE:
-    case types.CANCEL_CYCLE:
+      return {
+        reps: SET_REPS[week][set],
+        weight: parseFloat(action.settings[exersise].workingMax) * parseFloat(SET_MODIFIER[week][set]),
+        repsCompleted: 0,
+        setCompleted: false,
+      };
     case types.COMPLETE_SET:
     default:
       return state;
@@ -52,7 +56,6 @@ const initialExerciseState = {
   [SETS.ONE]: initialSetState,
   [SETS.TWO]: initialSetState,
   [SETS.THREE]: initialSetState,
-  complete: false,
 };
 
 /**
@@ -86,13 +89,6 @@ const createExerciseReducer = (week, exercise) => ((state = initialExerciseState
       return {
         ...reduceSets(state, action, week, exercise),
       };
-    case types.COMPLETE_SET:
-      return {
-        ...reduceSets(state, action, week, exercise),
-        complete: true,
-      };
-    case types.COMPLETE_CYCLE:
-    case types.CANCEL_CYCLE:
     default:
       return state;
   }
@@ -198,12 +194,7 @@ const cycle = (state = initialCycleState, action) => {
         active: false,
       };
     case types.CANCEL_CYCLE:
-      return {
-        ...state,
-        ...reduceWeeks(state, action),
-        complete: false,
-        active: false,
-      };
+      return initialCycleState;
     case types.COMPLETE_SET:
       return {
         ...state,
