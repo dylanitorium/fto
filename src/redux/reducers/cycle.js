@@ -34,12 +34,34 @@ const initialSetState = {
   setCompleted: false,
 };
 
+const calculateWeight = (weight, modifier) => {
+  let base = (parseFloat(weight) * parseFloat(modifier));
+  let num = base / 2.5;
+  let diff = parseFloat(num - Math.floor(num)).toFixed(3);
+  let result;
+  let fill;
+
+  if (diff >= 0.5) {
+    fill = ((1 - diff) * 2.5);
+    result = (base + fill).toFixed(1);
+  } else {
+    fill = (diff * 2.5);
+    result = (base - fill).toFixed(1);
+  }
+
+  if (result.slice('-1') === '0') {
+    return result.substring(0, result.length - 2);
+  }
+
+  return result;
+};
+
 const createSetReducer = (week, exersise, set) => ((state = initialSetState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
       return {
         reps: SET_REPS[week][set],
-        weight: parseFloat(action.settings[exersise].workingMax) * parseFloat(SET_MODIFIER[week][set]),
+        weight: calculateWeight(action.settings[exersise].workingMax, SET_MODIFIER[week][set]),
         repsCompleted: 0,
         setCompleted: false,
       };
