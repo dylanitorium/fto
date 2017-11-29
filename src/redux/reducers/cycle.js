@@ -34,19 +34,26 @@ const initialSetState = {
   setCompleted: false,
 };
 
+/**
+ *
+ * @param weight
+ * @param modifier
+ * @returns {*}
+ */
 const calculateWeight = (weight, modifier) => {
-  let base = (parseFloat(weight) * parseFloat(modifier));
-  let num = base / 2.5;
-  let diff = parseFloat(num - Math.floor(num)).toFixed(3);
+  const roundingFactor = 2.5;
+  const rawNumber = (parseFloat(weight) * parseFloat(modifier));
+  const rawFactorial = rawNumber / roundingFactor;
+  const percentageOfNextRound = parseFloat(rawFactorial - Math.floor(rawFactorial)).toFixed(3);
   let result;
   let fill;
 
-  if (diff >= 0.5) {
-    fill = ((1 - diff) * 2.5);
-    result = (base + fill).toFixed(1);
+  if (percentageOfNextRound >= 0.5) {
+    fill = ((1 - percentageOfNextRound) * roundingFactor);
+    result = (rawNumber + fill).toFixed(1);
   } else {
-    fill = (diff * 2.5);
-    result = (base - fill).toFixed(1);
+    fill = (percentageOfNextRound * roundingFactor);
+    result = (rawNumber - fill).toFixed(1);
   }
 
   if (result.slice('-1') === '0') {
@@ -56,6 +63,14 @@ const calculateWeight = (weight, modifier) => {
   return result;
 };
 
+/**
+ * Creates a set reducer with context of its week and exercise
+ *
+ * @param week
+ * @param exersise
+ * @param set
+ * @returns {function(*=, *)}
+ */
 const createSetReducer = (week, exersise, set) => ((state = initialSetState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
@@ -66,6 +81,10 @@ const createSetReducer = (week, exersise, set) => ((state = initialSetState, act
         setCompleted: false,
       };
     case types.COMPLETE_SET:
+      return {
+        ...state,
+        setCompleted: true,
+      };
     default:
       return state;
   }
@@ -89,7 +108,7 @@ const initialExerciseState = {
  * @param exercise
  * @returns {{}}
  */
-const reduceSets = (state, action, week, exercise) => ({
+const reduceAllSets = (state, action, week, exercise) => ({
   [SETS.WARM_UP_ONE]: createSetReducer(week, exercise, SETS.WARM_UP_ONE)(state[SETS.WARM_UP_ONE], action),
   [SETS.WARM_UP_TWO]: createSetReducer(week, exercise, SETS.WARM_UP_TWO)(state[SETS.WARM_UP_TWO], action),
   [SETS.WARM_UP_THREE]: createSetReducer(week, exercise, SETS.WARM_UP_THREE)(state[SETS.WARM_UP_THREE], action),
@@ -107,13 +126,33 @@ const reduceSets = (state, action, week, exercise) => ({
  */
 const createExerciseReducer = (week, exercise) => ((state = initialExerciseState, action) => {
   switch (action.type) {
+    case types.COMPLETE_SET:
+      return {
+        ...state,
+        [state[action.set]]: createSetReducer(week, exercise, action.set)(state[action.set], action),
+      };
     case types.START_CYCLE:
       return {
-        ...reduceSets(state, action, week, exercise),
+        ...reduceAllSets(state, action, week, exercise),
       };
     default:
       return state;
   }
+});
+
+/**
+ * Makes it easier to pass the state and action to the substate... kinda
+ *
+ * @param state
+ * @param action
+ * @param week
+ * @returns {{}}
+ */
+const reduceAllExercises = (state, action, week) => ({
+  [EXERCISES.BENCH]: createExerciseReducer(week, EXERCISES.BENCH)(state[EXERCISES.BENCH], action),
+  [EXERCISES.SQUAT]: createExerciseReducer(week, EXERCISES.SQUAT)(state[EXERCISES.SQUAT], action),
+  [EXERCISES.OVERHEAD]: createExerciseReducer(week, EXERCISES.OVERHEAD)(state[EXERCISES.OVERHEAD], action),
+  [EXERCISES.DEADLIFT]: createExerciseReducer(week, EXERCISES.DEADLIFT)(state[EXERCISES.DEADLIFT], action),
 });
 
 /**
@@ -129,21 +168,6 @@ const initialWeekState = {
 };
 
 /**
- * Makes it easier to pass the state and action to the substate... kinda
- *
- * @param state
- * @param action
- * @param week
- * @returns {{}}
- */
-const reduceExercises = (state, action, week) => ({
-  [EXERCISES.BENCH]: createExerciseReducer(week, EXERCISES.BENCH)(state[EXERCISES.BENCH], action),
-  [EXERCISES.SQUAT]: createExerciseReducer(week, EXERCISES.SQUAT)(state[EXERCISES.SQUAT], action),
-  [EXERCISES.OVERHEAD]: createExerciseReducer(week, EXERCISES.OVERHEAD)(state[EXERCISES.OVERHEAD], action),
-  [EXERCISES.DEADLIFT]: createExerciseReducer(week, EXERCISES.DEADLIFT)(state[EXERCISES.DEADLIFT], action),
-});
-
-/**
  * Creates a reducer for a week, passing the context of the week down.
  *
  * @param week
@@ -152,13 +176,15 @@ const reduceExercises = (state, action, week) => ({
 const createWeekReducer = week => ((state = initialWeekState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
-    case types.COMPLETE_CYCLE:
-    case types.CANCEL_CYCLE:
+      return {
+        ...state,
+        ...reduceAllExercises(state, action, week)
+      };
     case types.COMPLETE_SET:
       return {
         ...state,
-        ...reduceExercises(state, action, week)
-      };
+        [state[action.exercise]]: createExerciseReducer(action.week, action.exercise)(state[action.exercise], action),
+      }
     default:
       return state;
   }
@@ -173,7 +199,7 @@ const createWeekReducer = week => ((state = initialWeekState, action) => {
  * @param action
  * @returns {{}}
  */
-const reduceWeeks = (state, action) => ({
+const reduceAllWeeks = (state, action) => ({
   [WEEKS.ONE]: createWeekReducer(WEEKS.ONE)(state[WEEKS.ONE], action),
   [WEEKS.TWO]: createWeekReducer(WEEKS.TWO)(state[WEEKS.TWO], action),
   [WEEKS.THREE]: createWeekReducer(WEEKS.THREE)(state[WEEKS.THREE], action),
@@ -190,6 +216,9 @@ const initialCycleState = {
   [WEEKS.THREE]: initialWeekState,
   [WEEKS.FOUR]: initialWeekState,
   completed: false,
+  startDate: null,
+  finishDate: null,
+  cycleId: null,
   active: false,
 };
 
@@ -205,22 +234,25 @@ const cycle = (state = initialCycleState, action) => {
     case types.START_CYCLE:
       return {
         ...state,
-        ...reduceWeeks(state, action),
+        ...reduceAllWeeks(state, action),
         active: true,
+        startDate: '',
+        cycleId: '',
       };
     case types.COMPLETE_CYCLE:
       return {
         ...state,
-        ...reduceWeeks(state, action),
+        ...reduceAllWeeks(state, action),
         complete: true,
         active: false,
+        finishDate: '',
       };
     case types.CANCEL_CYCLE:
       return initialCycleState;
     case types.COMPLETE_SET:
       return {
         ...state,
-        ...reduceWeeks(state, action),
+        [state[action.week]]: createWeekReducer(action.week)(state[action.week], action),
       };
     default:
       return state;
@@ -238,10 +270,11 @@ const initialHistoryState = {};
  */
 const history = (state = initialHistoryState, action) => {
   switch (action.type) {
-    case types.START_CYCLE:
     case types.COMPLETE_CYCLE:
-    case types.CANCEL_CYCLE:
-    case types.COMPLETE_SET:
+      return {
+        ...state,
+        [action.cycle.cycleId]: action.cycle,
+      };
     default:
       return state;
   }
