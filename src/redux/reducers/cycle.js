@@ -1,5 +1,5 @@
 // Action Types
-import { EXERCISES, WEEKS } from '../../constants';
+import { EXERCISES, SETS, WEEKS } from '../../constants';
 
 const types = {
   START_CYCLE: 'app/cycle/start',
@@ -28,10 +28,13 @@ export const completeSet = () => ({
 
 // Reducer
 const initialSetState = {
-
+  reps: 0,
+  weight: 0,
+  repsCompleted: 0,
+  setCompleted: false,
 };
 
-const set = (state = initialSetState, action) => {
+const createSetReducer = (week, exersise, set) => ((state = initialSetState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
     case types.COMPLETE_CYCLE:
@@ -40,31 +43,95 @@ const set = (state = initialSetState, action) => {
     default:
       return state;
   }
-};
+});
 
 const initialExerciseState = {
-
+  [SETS.WARM_UP_ONE]: initialSetState,
+  [SETS.WARM_UP_TWO]: initialSetState,
+  [SETS.WARM_UP_THREE]: initialSetState,
+  [SETS.ONE]: initialSetState,
+  [SETS.TWO]: initialSetState,
+  [SETS.THREE]: initialSetState,
+  complete: false,
 };
 
-const exercise = (state = initialExerciseState, action) => {
+/**
+ * Makes it easier to pass the state and action to the substate... kinda... kinda
+ *
+ * @param state
+ * @param action
+ * @param week
+ * @param exercise
+ * @returns {{}}
+ */
+const reduceSets = (state, action, week, exercise) => ({
+  [SETS.WARM_UP_ONE]: createSetReducer(week, exercise, SETS.WARM_UP_ONE)(state[SETS.WARM_UP_ONE], action),
+  [SETS.WARM_UP_TWO]: createSetReducer(week, exercise, SETS.WARM_UP_TWO)(state[SETS.WARM_UP_TWO], action),
+  [SETS.WARM_UP_THREE]: createSetReducer(week, exercise, SETS.WARM_UP_THREE)(state[SETS.WARM_UP_THREE], action),
+  [SETS.ONE]: createSetReducer(week, exercise, SETS.ONE)(state[SETS.ONE], action),
+  [SETS.TWO]: createSetReducer(week, exercise, SETS.TWO)(state[SETS.TWO], action),
+  [SETS.THREE]: createSetReducer(week, exercise, SETS.THREE)(state[SETS.THREE], action),
+});
+
+/**
+ * Creates the reducer for an exercise in the context of a week
+ *
+ * @param week
+ * @param exercise
+ * @returns {function(*=, *=)}
+ */
+const createExerciseReducer = (week, exercise) => ((state = initialExerciseState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
+      return {
+        ...reduceSets(state, action, week, exercise),
+      };
+    case types.COMPLETE_SET:
+      return {
+        ...reduceSets(state, action, week, exercise),
+        complete: true,
+      };
     case types.COMPLETE_CYCLE:
     case types.CANCEL_CYCLE:
-    case types.COMPLETE_SET:
     default:
       return state;
   }
-};
+});
 
+/**
+ *
+ * @type {{complete: boolean}}
+ */
 const initialWeekState = {
   [EXERCISES.BENCH]: initialExerciseState,
   [EXERCISES.SQUAT]: initialExerciseState,
   [EXERCISES.OVERHEAD]: initialExerciseState,
   [EXERCISES.DEADLIFT]: initialExerciseState,
+  complete: false,
 };
 
-const week = (state = initialWeekState, action) => {
+/**
+ * Makes it easier to pass the state and action to the substate... kinda
+ *
+ * @param state
+ * @param action
+ * @param week
+ * @returns {{}}
+ */
+const reduceExercises = (state, action, week) => ({
+  [EXERCISES.BENCH]: createExerciseReducer(week, EXERCISES.BENCH)(state[EXERCISES.BENCH], action),
+  [EXERCISES.SQUAT]: createExerciseReducer(week, EXERCISES.SQUAT)(state[EXERCISES.SQUAT], action),
+  [EXERCISES.OVERHEAD]: createExerciseReducer(week, EXERCISES.OVERHEAD)(state[EXERCISES.OVERHEAD], action),
+  [EXERCISES.DEADLIFT]: createExerciseReducer(week, EXERCISES.DEADLIFT)(state[EXERCISES.DEADLIFT], action),
+});
+
+/**
+ * Creates a reducer for a week, passing the context of the week down.
+ *
+ * @param week
+ * @returns {function(*=, *=)}
+ */
+const createWeekReducer = week => ((state = initialWeekState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
     case types.COMPLETE_CYCLE:
@@ -72,64 +139,75 @@ const week = (state = initialWeekState, action) => {
     case types.COMPLETE_SET:
       return {
         ...state,
-        [EXERCISES.BENCH]: exercise(state[EXERCISES.BENCH], action),
-        [EXERCISES.SQUAT]: exercise(state[EXERCISES.SQUAT], action),
-        [EXERCISES.OVERHEAD]: exercise(state[EXERCISES.OVERHEAD], action),
-        [EXERCISES.DEADLIFT]: exercise(state[EXERCISES.DEADLIFT], action),
+        ...reduceExercises(state, action, week)
       };
     default:
       return state;
   }
-};
+});
 
+
+
+/**
+ * Makes it easier to pass the state and action to the substate.
+ *
+ * @param state
+ * @param action
+ * @returns {{}}
+ */
+const reduceWeeks = (state, action) => ({
+  [WEEKS.ONE]: createWeekReducer(WEEKS.ONE)(state[WEEKS.ONE], action),
+  [WEEKS.TWO]: createWeekReducer(WEEKS.TWO)(state[WEEKS.TWO], action),
+  [WEEKS.THREE]: createWeekReducer(WEEKS.THREE)(state[WEEKS.THREE], action),
+  [WEEKS.FOUR]: createWeekReducer(WEEKS.FOUR)(state[WEEKS.FOUR], action),
+});
+
+/**
+ * Initial state for a cycle
+ * @type {{completed: boolean, active: boolean}}
+ */
 const initialCycleState = {
   [WEEKS.ONE]: initialWeekState,
   [WEEKS.TWO]: initialWeekState,
   [WEEKS.THREE]: initialWeekState,
   [WEEKS.FOUR]: initialWeekState,
-
   completed: false,
   active: false,
 };
 
+/**
+ * Cycle reducer
+ *
+ * @param state
+ * @param action
+ * @returns {*}
+ */
 const cycle = (state = initialCycleState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
       return {
         ...state,
-        [WEEKS.ONE]: week(state[WEEKS.ONE], action),
-        [WEEKS.TWO]: week(state[WEEKS.TWO], action),
-        [WEEKS.THREE]: week(state[WEEKS.THREE], action),
-        [WEEKS.FOUR]: week(state[WEEKS.FOUR], action),
+        ...reduceWeeks(state, action),
         active: true,
       };
     case types.COMPLETE_CYCLE:
       return {
         ...state,
-        [WEEKS.ONE]: week(state[WEEKS.ONE], action),
-        [WEEKS.TWO]: week(state[WEEKS.TWO], action),
-        [WEEKS.THREE]: week(state[WEEKS.THREE], action),
-        [WEEKS.FOUR]: week(state[WEEKS.FOUR], action),
+        ...reduceWeeks(state, action),
         complete: true,
         active: false,
       };
     case types.CANCEL_CYCLE:
       return {
         ...state,
-        [WEEKS.ONE]: week(state[WEEKS.ONE], action),
-        [WEEKS.TWO]: week(state[WEEKS.TWO], action),
-        [WEEKS.THREE]: week(state[WEEKS.THREE], action),
-        [WEEKS.FOUR]: week(state[WEEKS.FOUR], action),
+        ...reduceWeeks(state, action),
         complete: false,
         active: false,
       };
     case types.COMPLETE_SET:
       return {
         ...state,
-        [WEEKS.ONE]: week(state[WEEKS.ONE], action),
-        [WEEKS.TWO]: week(state[WEEKS.TWO], action),
-        [WEEKS.THREE]: week(state[WEEKS.THREE], action),
-        [WEEKS.FOUR]: week(state[WEEKS.FOUR], action),
+        ...reduceWeeks(state, action),
       };
     default:
       return state;
@@ -138,6 +216,13 @@ const cycle = (state = initialCycleState, action) => {
 
 const initialHistoryState = {};
 
+/**
+ * History reducer
+ *
+ * @param state
+ * @param action
+ * @returns {{}}
+ */
 const history = (state = initialHistoryState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
