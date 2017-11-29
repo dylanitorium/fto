@@ -24,21 +24,70 @@ export const WEEKS = {
   FOUR: '4',
 };
 
-export const WARM_UP_REPS = [5, 5, 5];
+export const SETS = {
+  WARM_UP_ONE: 'warmUpSetOne',
+  WARM_UP_TWO: 'warmUpSetTwo',
+  WARM_UP_THREE: 'warmUpSetThree',
+  ONE: 'setOne',
+  TWO: 'setTwo',
+  THREE: 'setThree',
+};
 
-export const WARM_UP_MODIFIER = [0.4, 0.5, 0.6];
+export const WARM_UP_REPS = {
+  [SETS.WARM_UP_ONE]: 5,
+  [SETS.WARM_UP_TWO]: 5,
+  [SETS.WARM_UP_THREE]: 5,
+};
+
+export const WARM_UP_MODIFIER = {
+  [SETS.WARM_UP_ONE]: 0.4,
+  [SETS.WARM_UP_TWO]: 0.5,
+  [SETS.WARM_UP_THREE]: 0.6,
+};
 
 export const SET_REPS = {
-  [WEEKS.ONE]: [5, 5, 5],
-  [WEEKS.TWO]: [3, 3, 3],
-  [WEEKS.THREE]: [5, 3, 1],
-  [WEEKS.FOUR]: [5, 5, 5],
-}
+  [WEEKS.ONE]: {
+    [SETS.ONE]: 5,
+    [SETS.TWO]: 5,
+    [SETS.THREE]: 5,
+  },
+  [WEEKS.TWO]: {
+    [SETS.ONE]: 3,
+    [SETS.TWO]: 3,
+    [SETS.THREE]: 3,
+  },
+  [WEEKS.THREE]: {
+    [SETS.ONE]: 5,
+    [SETS.TWO]: 3,
+    [SETS.THREE]: 1,
+  },
+  [WEEKS.FOUR]: {
+    [SETS.ONE]: 5,
+    [SETS.TWO]: 5,
+    [SETS.THREE]: 5,
+  },
+};
 
 export const SET_MODIFIER = {
-  [WEEKS.ONE]: [0.65, 0.75, 0.85],
-  [WEEKS.TWO]: [0.7, 0.8, 0.9],
-  [WEEKS.THREE]: [0.75, 0.85, 0.95],
-  [WEEKS.FOUR]: [0.6, 0.6, 0.6],
-}
+  [WEEKS.ONE]: {
+    [SETS.ONE]: 0.65,
+    [SETS.TWO]: 0.75,
+    [SETS.THREE]: 0.85,
+  },
+  [WEEKS.TWO]: {
+    [SETS.ONE]: 0.7,
+    [SETS.TWO]: 0.8,
+    [SETS.THREE]: 0.9,
+  },
+  [WEEKS.THREE]: {
+    [SETS.ONE]: 0.75,
+    [SETS.TWO]: 0.85,
+    [SETS.THREE]: 0.95,
+  },
+  [WEEKS.FOUR]: {
+    [SETS.ONE]: 0.6,
+    [SETS.TWO]: 0.6,
+    [SETS.THREE]: 0.6,
+  },
+};
 

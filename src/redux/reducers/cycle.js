@@ -1,5 +1,5 @@
 // Action Types
-import {EXERCISES, WEEKS} from '../../constants';
+import { EXERCISES, WEEKS } from '../../constants';
 
 const types = {
   START_CYCLE: 'app/cycle/start',
@@ -16,7 +16,7 @@ export const startCycle = settings => ({
 
 export const completeCycle = () => ({
   type: types.COMPLETE_CYCLE
-})
+});
 
 export const cancelCycle = () => ({
   type: types.CANCEL_CYCLE,
@@ -27,7 +27,24 @@ export const completeSet = () => ({
 });
 
 // Reducer
-const initialExerciseState = {};
+const initialSetState = {
+
+};
+
+const set = (state = initialSetState, action) => {
+  switch (action.type) {
+    case types.START_CYCLE:
+    case types.COMPLETE_CYCLE:
+    case types.CANCEL_CYCLE:
+    case types.COMPLETE_SET:
+    default:
+      return state;
+  }
+};
+
+const initialExerciseState = {
+
+};
 
 const exercise = (state = initialExerciseState, action) => {
   switch (action.type) {
@@ -38,7 +55,7 @@ const exercise = (state = initialExerciseState, action) => {
     default:
       return state;
   }
-}
+};
 
 const initialWeekState = {
   [EXERCISES.BENCH]: initialExerciseState,
@@ -59,7 +76,7 @@ const week = (state = initialWeekState, action) => {
         [EXERCISES.SQUAT]: exercise(state[EXERCISES.SQUAT], action),
         [EXERCISES.OVERHEAD]: exercise(state[EXERCISES.OVERHEAD], action),
         [EXERCISES.DEADLIFT]: exercise(state[EXERCISES.DEADLIFT], action),
-      }
+      };
     default:
       return state;
   }
@@ -70,6 +87,7 @@ const initialCycleState = {
   [WEEKS.TWO]: initialWeekState,
   [WEEKS.THREE]: initialWeekState,
   [WEEKS.FOUR]: initialWeekState,
+
   completed: false,
   active: false,
 };
@@ -84,7 +102,7 @@ const cycle = (state = initialCycleState, action) => {
         [WEEKS.THREE]: week(state[WEEKS.THREE], action),
         [WEEKS.FOUR]: week(state[WEEKS.FOUR], action),
         active: true,
-      }
+      };
     case types.COMPLETE_CYCLE:
       return {
         ...state,
@@ -94,7 +112,7 @@ const cycle = (state = initialCycleState, action) => {
         [WEEKS.FOUR]: week(state[WEEKS.FOUR], action),
         complete: true,
         active: false,
-      }
+      };
     case types.CANCEL_CYCLE:
       return {
         ...state,
@@ -104,7 +122,7 @@ const cycle = (state = initialCycleState, action) => {
         [WEEKS.FOUR]: week(state[WEEKS.FOUR], action),
         complete: false,
         active: false,
-      }
+      };
     case types.COMPLETE_SET:
       return {
         ...state,
@@ -112,15 +130,28 @@ const cycle = (state = initialCycleState, action) => {
         [WEEKS.TWO]: week(state[WEEKS.TWO], action),
         [WEEKS.THREE]: week(state[WEEKS.THREE], action),
         [WEEKS.FOUR]: week(state[WEEKS.FOUR], action),
-      }
+      };
     default:
       return state;
   }
-}
+};
+
+const initialHistoryState = {};
+
+const history = (state = initialHistoryState, action) => {
+  switch (action.type) {
+    case types.START_CYCLE:
+    case types.COMPLETE_CYCLE:
+    case types.CANCEL_CYCLE:
+    case types.COMPLETE_SET:
+    default:
+      return state;
+  }
+};
 
 const initialState = {
   cycle: initialCycleState,
-  history: {},
+  history: initialHistoryState
 };
 
 export const reducer = (state = initialState, action) => {
@@ -132,8 +163,9 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         cycle: cycle(state[cycle], action),
-      }
+        history: history(state.history, action),
+      };
     default:
       return state;
   }
-}
+};
