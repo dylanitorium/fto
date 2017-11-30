@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   }
-})
+});
 
 const App = () => (
   <Provider store={store}>

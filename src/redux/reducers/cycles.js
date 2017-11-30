@@ -288,7 +288,7 @@ const initialState = {
   history: initialHistoryState
 };
 
-export const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case types.START_CYCLE:
     case types.COMPLETE_CYCLE:
