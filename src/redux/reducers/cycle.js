@@ -1,6 +1,9 @@
-// Action Types
-import {EXERCISES, SET_MODIFIER, SET_REPS, SETS, WEEKS} from '../../constants';
 
+import md5 from 'md5';
+import {EXERCISES, SET_MODIFIER, SET_REPS, SETS, WEEKS} from '../../constants';
+import moment from 'moment';
+
+// Action Types
 const types = {
   START_CYCLE: 'app/cycle/start',
   COMPLETE_CYCLE: 'app/cycle/complete',
@@ -236,8 +239,8 @@ const cycle = (state = initialCycleState, action) => {
         ...state,
         ...reduceAllWeeks(state, action),
         active: true,
-        startDate: '',
-        cycleId: '',
+        startDate: moment(),
+        cycleId: md5(moment() + JSON.stringify(action.settings)),
       };
     case types.COMPLETE_CYCLE:
       return {
@@ -245,7 +248,7 @@ const cycle = (state = initialCycleState, action) => {
         ...reduceAllWeeks(state, action),
         complete: true,
         active: false,
-        finishDate: '',
+        finishDate: moment(),
       };
     case types.CANCEL_CYCLE:
       return initialCycleState;
