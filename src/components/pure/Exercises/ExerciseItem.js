@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TouchableOpacity } from 'react-native';
 import { Text, Row } from '@shoutem/ui';
-import { Link } from 'react-router-native';
 import { Button } from '../Button';
+import { Linkable } from '../../utility';
+
 
 const ExceriseItem = props => (
-  <Link to={props.to}>
+  <TouchableOpacity {...props}>
     <Row>
       <Text>{props.children}</Text>
       <Button styleName={'right-icon'} icon={'right-arrow'} />
     </Row>
-  </Link>
+  </TouchableOpacity>
 );
 
 ExceriseItem.propTypes = {
-  to: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 
@@ -22,4 +23,4 @@ ExceriseItem.defaultProps = {
 
 };
 
-export default ExceriseItem;
+export default Linkable(ExceriseItem);

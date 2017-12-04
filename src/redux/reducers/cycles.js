@@ -1,7 +1,8 @@
 
 import md5 from 'md5';
-import {EXERCISES, SET_MODIFIER, SET_REPS, SETS, WEEKS} from '../../constants';
 import moment from 'moment';
+import { EXERCISES, SET_MODIFIER, SET_REPS, SETS, WEEKS } from '../../constants';
+
 
 // Action Types
 const types = {
@@ -187,12 +188,11 @@ const createWeekReducer = week => ((state = initialWeekState, action) => {
       return {
         ...state,
         [state[action.exercise]]: createExerciseReducer(action.week, action.exercise)(state[action.exercise], action),
-      }
+      };
     default:
       return state;
   }
 });
-
 
 
 /**

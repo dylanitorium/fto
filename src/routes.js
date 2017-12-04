@@ -12,6 +12,7 @@ import OnboardOverhead from './components/connected/screens/OnboardOverhead';
 import OnboardDeadlift from './components/connected/screens/OnboardDeadlift';
 
 import WeekScreen from './components/connected/screens/WeekScreen';
+import ExerciseScreen from './components/connected/screens/ExerciseScreen';
 
 
 export default () => (
@@ -24,12 +25,15 @@ export default () => (
     <Route path={'/onboard/overhead'} component={OnboardOverhead} />
     <Route path={'/onboard/deadlift'} component={OnboardDeadlift} />
 
-    <PrivateRoute path={'/week/:week'} component={WeekScreen} />
-    <PrivateRoute path={'/week/:week/exercise/:exercise'} />
+
+    <PrivateRoute exact path={'/week/:week'} component={WeekScreen} />
+    <PrivateRoute path={'/week/:week/exercise/:exercise'} component={ExerciseScreen} />
+
 
     <PrivateRoute path={'/history/:cycleId'} />
     <PrivateRoute path={'/history/:cycleId/week/:week'} component={WeekScreen} />
     <PrivateRoute path={'/history/:cycleId/week/:week/exercise/:exercise'} />
+
 
     <PrivateRoute path={'/settings'} />
   </Switch>

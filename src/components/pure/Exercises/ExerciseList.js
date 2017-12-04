@@ -6,19 +6,19 @@ import { EXERCISES } from '../../../constants';
 
 const ExerciseList = props => (
   <View>
-    <ExerciseItem to={`${props.match.url}exercise/${EXERCISES.BENCH}`}>
+    <ExerciseItem to={`${props.match.url}/exercise/${EXERCISES.BENCH}`}>
       Bench
     </ExerciseItem>
     <Divider />
-    <ExerciseItem to={`${props.match.url}exercise/${EXERCISES.SQUAT}`}>
+    <ExerciseItem to={`${props.match.url}/exercise/${EXERCISES.SQUAT}`}>
       Squat
     </ExerciseItem>
     <Divider />
-    <ExerciseItem to={`${props.match.url}exercise/${EXERCISES.OVERHEAD}`}>
+    <ExerciseItem to={`${props.match.url}/exercise/${EXERCISES.OVERHEAD}`}>
       Overhead
     </ExerciseItem>
     <Divider />
-    <ExerciseItem to={`${props.match.url}exercise/${EXERCISES.DEADLIFT}`}>
+    <ExerciseItem to={`${props.match.url}/exercise/${EXERCISES.DEADLIFT}`}>
       Deadlift
     </ExerciseItem>
   </View>

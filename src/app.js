@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
   }
 });
 
+persistor.purge();
+
 const App = () => (
   <Provider store={store}>
     <PersistGate

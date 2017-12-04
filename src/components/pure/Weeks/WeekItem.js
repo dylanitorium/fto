@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, Row } from '@shoutem/ui';
-import { Link } from 'react-router-native';
+import { TouchableOpacity } from 'react-native';
 import { Button } from '../Button';
+import { Linkable } from '../../utility';
 
 const WeekItem = props => (
-  <Link to={props.to}>
+  <TouchableOpacity {...props}>
     <Row>
       <Text>{props.children}</Text>
       <Button styleName={'right-icon'} icon={'right-arrow'} />
     </Row>
-  </Link>
+  </TouchableOpacity>
 );
 
 WeekItem.propTypes = {
@@ -22,4 +23,4 @@ WeekItem.defaultProps = {
 
 };
 
-export default WeekItem;
+export default Linkable(WeekItem);
