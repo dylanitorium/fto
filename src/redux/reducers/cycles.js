@@ -26,8 +26,11 @@ export const cancelCycle = () => ({
   type: types.CANCEL_CYCLE,
 });
 
-export const completeSet = () => ({
+export const completeSet = (week, exercise, set) => ({
   type: types.COMPLETE_SET,
+  week,
+  exercise,
+  set,
 });
 
 // Reducer
@@ -133,7 +136,7 @@ const createExerciseReducer = (week, exercise) => ((state = initialExerciseState
     case types.COMPLETE_SET:
       return {
         ...state,
-        [state[action.set]]: createSetReducer(week, exercise, action.set)(state[action.set], action),
+        [action.set]: createSetReducer(week, exercise, action.set)(state[action.set], action),
       };
     case types.START_CYCLE:
       return {
@@ -187,7 +190,7 @@ const createWeekReducer = week => ((state = initialWeekState, action) => {
     case types.COMPLETE_SET:
       return {
         ...state,
-        [state[action.exercise]]: createExerciseReducer(action.week, action.exercise)(state[action.exercise], action),
+        [action.exercise]: createExerciseReducer(action.week, action.exercise)(state[action.exercise], action),
       };
     default:
       return state;
@@ -255,7 +258,7 @@ const cycle = (state = initialCycleState, action) => {
     case types.COMPLETE_SET:
       return {
         ...state,
-        [state[action.week]]: createWeekReducer(action.week)(state[action.week], action),
+        [action.week]: createWeekReducer(action.week)(state[action.week], action),
       };
     default:
       return state;

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   }
 });
 
-persistor.purge();
+// persistor.purge();
 
 const App = () => (
   <Provider store={store}>

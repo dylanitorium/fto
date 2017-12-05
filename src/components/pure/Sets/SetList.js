@@ -8,18 +8,18 @@ import { SETS } from '../../../constants';
 const SetList = props => (
   <View>
     <Title> Warm Up Sets </Title>
-    <SetItem set={props.sets[SETS.WARM_UP_ONE]} />
+    <SetItem {...props} set={SETS.WARM_UP_ONE} data={props.sets[SETS.WARM_UP_ONE]} />
     <Divider />
-    <SetItem set={props.sets[SETS.WARM_UP_TWO]} />
+    <SetItem {...props} set={SETS.WARM_UP_TWO} data={props.sets[SETS.WARM_UP_TWO]} />
     <Divider />
-    <SetItem set={props.sets[SETS.WARM_UP_THREE]} />
+    <SetItem {...props} set={SETS.WARM_UP_THREE} data={props.sets[SETS.WARM_UP_THREE]} />
     <Divider />
     <Title> Working Sets </Title>
-    <SetItem set={props.sets[SETS.ONE]} />
+    <SetItem {...props} set={SETS.ONE} data={props.sets[SETS.ONE]} />
     <Divider />
-    <SetItem set={props.sets[SETS.TWO]} />
+    <SetItem {...props} set={SETS.TWO} data={props.sets[SETS.TWO]} />
     <Divider />
-    <SetItem set={props.sets[SETS.THREE]} />
+    <SetItem {...props} set={SETS.THREE} data={props.sets[SETS.THREE]} />
     <Divider />
   </View>
 );
