@@ -29,7 +29,6 @@ export default () => (
     <PrivateRoute exact path={'/week/:week'} component={WeekScreen} />
     <PrivateRoute path={'/week/:week/exercise/:exercise'} component={ExerciseScreen} />
 
-
     <PrivateRoute path={'/history/:cycleId'} />
     <PrivateRoute path={'/history/:cycleId/week/:week'} component={WeekScreen} />
     <PrivateRoute path={'/history/:cycleId/week/:week/exercise/:exercise'} />

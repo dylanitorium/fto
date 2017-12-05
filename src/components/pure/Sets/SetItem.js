@@ -4,12 +4,12 @@ import { Text, Row } from '@shoutem/ui';
 
 const SetItem = props => (
   <Row>
-    <Text>{props.children}</Text>
+    <Text>{props.set.reps} x {props.set.weight}kg</Text>
   </Row>
 );
 
 SetItem.propTypes = {
-  children: PropTypes.node.isRequired,
+  set: PropTypes.object.isRequired,
 };
 
 SetItem.defaultProps = {
