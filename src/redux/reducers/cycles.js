@@ -9,7 +9,7 @@ const types = {
   START_CYCLE: 'app/cycle/start',
   COMPLETE_CYCLE: 'app/cycle/complete',
   CANCEL_CYCLE: 'app/cycle/cancel',
-  COMPLETE_SET: 'app/set/complete',
+  TOGGLE_SET: 'app/set/complete',
 };
 
 // Actions Creators
@@ -26,8 +26,8 @@ export const cancelCycle = () => ({
   type: types.CANCEL_CYCLE,
 });
 
-export const completeSet = (week, exercise, set) => ({
-  type: types.COMPLETE_SET,
+export const toggleSet = (week, exercise, set) => ({
+  type: types.TOGGLE_SET,
   week,
   exercise,
   set,
@@ -87,10 +87,10 @@ const createSetReducer = (week, exersise, set) => ((state = initialSetState, act
         repsCompleted: 0,
         setCompleted: false,
       };
-    case types.COMPLETE_SET:
+    case types.TOGGLE_SET:
       return {
         ...state,
-        setCompleted: true,
+        setCompleted: !state.setCompleted,
       };
     default:
       return state;
@@ -133,7 +133,7 @@ const reduceAllSets = (state, action, week, exercise) => ({
  */
 const createExerciseReducer = (week, exercise) => ((state = initialExerciseState, action) => {
   switch (action.type) {
-    case types.COMPLETE_SET:
+    case types.TOGGLE_SET:
       return {
         ...state,
         [action.set]: createSetReducer(week, exercise, action.set)(state[action.set], action),
@@ -187,7 +187,7 @@ const createWeekReducer = week => ((state = initialWeekState, action) => {
         ...state,
         ...reduceAllExercises(state, action, week)
       };
-    case types.COMPLETE_SET:
+    case types.TOGGLE_SET:
       return {
         ...state,
         [action.exercise]: createExerciseReducer(action.week, action.exercise)(state[action.exercise], action),
@@ -255,7 +255,7 @@ const cycle = (state = initialCycleState, action) => {
       };
     case types.CANCEL_CYCLE:
       return initialCycleState;
-    case types.COMPLETE_SET:
+    case types.TOGGLE_SET:
       return {
         ...state,
         [action.week]: createWeekReducer(action.week)(state[action.week], action),
@@ -296,7 +296,7 @@ export default (state = initialState, action) => {
     case types.START_CYCLE:
     case types.COMPLETE_CYCLE:
     case types.CANCEL_CYCLE:
-    case types.COMPLETE_SET:
+    case types.TOGGLE_SET:
       return {
         ...state,
         cycle: cycle(state[cycle], action),
