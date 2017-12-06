@@ -299,7 +299,7 @@ export default (state = initialState, action) => {
     case types.TOGGLE_SET:
       return {
         ...state,
-        cycle: cycle(state[cycle], action),
+        cycle: cycle(state.cycle, action),
         history: history(state.history, action),
       };
     default:
