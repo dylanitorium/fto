@@ -10,6 +10,7 @@ const types = {
   COMPLETE_CYCLE: 'app/cycle/complete',
   CANCEL_CYCLE: 'app/cycle/cancel',
   TOGGLE_SET: 'app/set/complete',
+  TOGGLE_EXERCISE: 'app/exercise/complete',
 };
 
 // Actions Creators
@@ -104,6 +105,7 @@ const initialExerciseState = {
   [SETS.ONE]: initialSetState,
   [SETS.TWO]: initialSetState,
   [SETS.THREE]: initialSetState,
+  exerciseCompleted: false,
 };
 
 /**
@@ -133,6 +135,11 @@ const reduceAllSets = (state, action, week, exercise) => ({
  */
 const createExerciseReducer = (week, exercise) => ((state = initialExerciseState, action) => {
   switch (action.type) {
+    case types.TOGGLE_EXERCISE:
+      return {
+        ...state,
+        exerciseCompleted: true,
+      };
     case types.TOGGLE_SET:
       return {
         ...state,
@@ -188,6 +195,7 @@ const createWeekReducer = week => ((state = initialWeekState, action) => {
         ...reduceAllExercises(state, action, week)
       };
     case types.TOGGLE_SET:
+    case types.TOGGLE_EXERCISE:
       return {
         ...state,
         [action.exercise]: createExerciseReducer(action.week, action.exercise)(state[action.exercise], action),
@@ -256,6 +264,7 @@ const cycle = (state = initialCycleState, action) => {
     case types.CANCEL_CYCLE:
       return initialCycleState;
     case types.TOGGLE_SET:
+    case types.TOGGLE_EXERCISE:
       return {
         ...state,
         [action.week]: createWeekReducer(action.week)(state[action.week], action),
@@ -297,6 +306,7 @@ export default (state = initialState, action) => {
     case types.COMPLETE_CYCLE:
     case types.CANCEL_CYCLE:
     case types.TOGGLE_SET:
+    case types.TOGGLE_EXERCISE:
       return {
         ...state,
         cycle: cycle(state.cycle, action),
