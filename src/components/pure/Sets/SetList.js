@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Title, Divider } from '@shoutem/ui';
 import SetItem from './SetItem';
 import { SETS } from '../../../constants';
+import { Button } from '../Button';
 
 
 const SetList = props => (
@@ -21,7 +22,9 @@ const SetList = props => (
     <Divider />
     <SetItem {...props} set={SETS.THREE} data={props.sets[SETS.THREE]} />
     <Divider />
+    <Button>Complete Exercise</Button>
   </View>
+
 );
 
 SetList.propTypes = {

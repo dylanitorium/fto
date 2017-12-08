@@ -1,15 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { Screen as ShoutemScreen } from '@shoutem/ui/components/Screen';
 import NavBar from '../../connected/NavBar';
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 90, // Nav height + 10
-    flexDirection: 'column',
-    height: '100%',
+    paddingTop: 70,
+    // flexDirection: 'column',
   },
+  content: {
+    // paddingTop: 20,
+    // paddingVertical: 90, // Nav height + 1
+    backgroundColor: 'black',
+    height: 300,
+    zIndex: -1,
+  }
 });
 
 const Screen = props => (
@@ -21,7 +27,9 @@ const Screen = props => (
   >
     <View style={[styles.container, ...props.style]}>
       <NavBar hasHistory={props.hasHistory} screenTitle={props.screenTitle} />
-      {props.children}
+      <ScrollView style={[styles.content]}>
+        {props.children}
+      </ScrollView>
     </View>
   </ShoutemScreen>
 );

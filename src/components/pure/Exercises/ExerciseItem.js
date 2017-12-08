@@ -27,7 +27,7 @@ ExceriseItem.propTypes = {
 };
 
 ExceriseItem.defaultProps = {
-
+  isCompleted: false,
 };
 
 export default Linkable(ExceriseItem);
