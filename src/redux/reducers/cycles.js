@@ -34,6 +34,12 @@ export const toggleSet = (week, exercise, set) => ({
   set,
 });
 
+export const toggleExercise = (week, exercise) => ({
+  type: types.TOGGLE_EXERCISE,
+  week,
+  exercise,
+});
+
 // Reducer
 const initialSetState = {
   reps: 0,

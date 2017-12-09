@@ -10,11 +10,12 @@ const styles = StyleSheet.create({
     // flexDirection: 'column',
   },
   content: {
-    // paddingTop: 20,
-    // paddingVertical: 90, // Nav height + 1
-    backgroundColor: 'black',
-    height: 300,
+    height: '100%',
     zIndex: -1,
+  },
+  inner: {
+    paddingTop: 20,
+    paddingBottom: 60,
   }
 });
 
@@ -28,7 +29,9 @@ const Screen = props => (
     <View style={[styles.container, ...props.style]}>
       <NavBar hasHistory={props.hasHistory} screenTitle={props.screenTitle} />
       <ScrollView style={[styles.content]}>
-        {props.children}
+        <View style={[styles.inner]}>
+          {props.children}
+        </View>
       </ScrollView>
     </View>
   </ShoutemScreen>

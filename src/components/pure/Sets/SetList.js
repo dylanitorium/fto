@@ -4,7 +4,7 @@ import { View, Title, Divider } from '@shoutem/ui';
 import SetItem from './SetItem';
 import { SETS } from '../../../constants';
 import { Button } from '../Button';
-
+import enumerize from '../../../lib/enumerize';
 
 const SetList = props => (
   <View>
@@ -22,13 +22,20 @@ const SetList = props => (
     <Divider />
     <SetItem {...props} set={SETS.THREE} data={props.sets[SETS.THREE]} />
     <Divider />
-    <Button>Complete Exercise</Button>
+    <Button
+      onPress={() => props.onCompletePress(props.match.params.week, props.match.params.exercise)}
+      disabled={!enumerize(props.sets).allChildrenMatch({ setCompleted: true })}
+    >
+      Complete Exercise
+    </Button>
   </View>
 
 );
 
 SetList.propTypes = {
   sets: PropTypes.object.isRequired,
+  onCompletePress: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 SetList.defaultProps = {

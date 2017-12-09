@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-native';
 import ExerciseScreen from '../../screens/ExerciseScreen';
-import { toggleSet } from '../../../redux/reducers/cycles';
+import { toggleExercise, toggleSet } from '../../../redux/reducers/cycles';
 
 export default withRouter(connect(
   (state, ownProps) => ({
@@ -9,5 +9,6 @@ export default withRouter(connect(
   }),
   {
     onSetItemPress: toggleSet,
+    onCompletePress: toggleExercise,
   }
 )(ExerciseScreen));
