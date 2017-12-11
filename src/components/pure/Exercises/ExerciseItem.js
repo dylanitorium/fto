@@ -11,11 +11,10 @@ const ExceriseItem = props => (
     <Row>
       <Text>{props.children}</Text>
       {
-        props.isCompleted
-          ? (<Icon styleName="disclosure" name="right-arrow" />)
-          : (<Button styleName="right-icon" icon="checkbox-on" />)
+        props.data.exerciseCompleted
+          ? (<Button styleName="right-icon" icon="checkbox-on" />)
+          : (<Icon styleName="disclosure" name="right-arrow" />)
       }
-
     </Row>
   </TouchableOpacity>
 );
@@ -23,7 +22,7 @@ const ExceriseItem = props => (
 ExceriseItem.propTypes = {
   children: PropTypes.node.isRequired,
   exercise: PropTypes.string.isRequired,
-  isCompleted: PropTypes.bool.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 ExceriseItem.defaultProps = {

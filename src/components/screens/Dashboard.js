@@ -13,9 +13,11 @@ const Dashboard = props => (
         props.cycleIsActive
           ? (<WeekList {...props} />)
           : (
-            <Button onPress={() => {
-              props.onButtonPress(props.settings);
-            }}
+            <Button
+              styleName="secondary"
+              onPress={() => {
+                props.onButtonPress(props.settings);
+              }}
             >Start Cycle</Button>
           )
       }

@@ -6,26 +6,27 @@ import { EXERCISES } from '../../../constants';
 
 const ExerciseList = props => (
   <View>
-    <ExerciseItem exercise={EXERCISES.BENCH} to={`${props.match.url}/exercise/${EXERCISES.BENCH}`} {...props}>
+    <ExerciseItem {...props} data={props.exercises[EXERCISES.BENCH]} exercise={EXERCISES.BENCH} to={`${props.match.url}/exercise/${EXERCISES.BENCH}`} >
       Bench
     </ExerciseItem>
     <Divider />
-    <ExerciseItem exercise={EXERCISES.SQUAT} to={`${props.match.url}/exercise/${EXERCISES.SQUAT}`} {...props}>
+    <ExerciseItem {...props} data={props.exercises[EXERCISES.SQUAT]} exercise={EXERCISES.SQUAT} to={`${props.match.url}/exercise/${EXERCISES.SQUAT}`} >
       Squat
     </ExerciseItem>
     <Divider />
-    <ExerciseItem exercise={EXERCISES.OVERHEAD} to={`${props.match.url}/exercise/${EXERCISES.OVERHEAD}`} {...props}>
+    <ExerciseItem {...props} data={props.exercises[EXERCISES.OVERHEAD]} exercise={EXERCISES.OVERHEAD} to={`${props.match.url}/exercise/${EXERCISES.OVERHEAD}`} >
       Overhead
     </ExerciseItem>
     <Divider />
-    <ExerciseItem exercise={EXERCISES.DEADLIFT} to={`${props.match.url}/exercise/${EXERCISES.DEADLIFT}`} {...props}>
+    <ExerciseItem {...props} data={props.exercises[EXERCISES.DEADLIFT]} exercise={EXERCISES.DEADLIFT} to={`${props.match.url}/exercise/${EXERCISES.DEADLIFT}`} >
       Deadlift
     </ExerciseItem>
   </View>
 );
 
 ExerciseList.propTypes = {
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  exercises: PropTypes.object.isRequired,
 };
 
 ExerciseList.defaultProps = {

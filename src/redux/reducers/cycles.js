@@ -154,6 +154,7 @@ const createExerciseReducer = (week, exercise) => ((state = initialExerciseState
     case types.START_CYCLE:
       return {
         ...reduceAllSets(state, action, week, exercise),
+        exerciseCompleted: false,
       };
     default:
       return state;

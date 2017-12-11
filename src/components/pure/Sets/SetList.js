@@ -4,30 +4,64 @@ import { View, Title, Divider } from '@shoutem/ui';
 import SetItem from './SetItem';
 import { SETS } from '../../../constants';
 import { Button } from '../Button';
-import enumerize from '../../../lib/enumerize';
+
 
 const SetList = props => (
   <View>
     <Title> Warm Up Sets </Title>
-    <SetItem {...props} set={SETS.WARM_UP_ONE} data={props.sets[SETS.WARM_UP_ONE]} />
+    <SetItem
+      {...props}
+      set={SETS.WARM_UP_ONE}
+      data={props.sets[SETS.WARM_UP_ONE]}
+      disabled={props.exerciseCompleted}
+    />
     <Divider />
-    <SetItem {...props} set={SETS.WARM_UP_TWO} data={props.sets[SETS.WARM_UP_TWO]} />
+    <SetItem
+      {...props}
+      set={SETS.WARM_UP_TWO}
+      data={props.sets[SETS.WARM_UP_TWO]}
+      disabled={props.exerciseCompleted}
+    />
     <Divider />
-    <SetItem {...props} set={SETS.WARM_UP_THREE} data={props.sets[SETS.WARM_UP_THREE]} />
+    <SetItem
+      {...props}
+      set={SETS.WARM_UP_THREE}
+      data={props.sets[SETS.WARM_UP_THREE]}
+      disabled={props.exerciseCompleted}
+    />
     <Divider />
     <Title> Working Sets </Title>
-    <SetItem {...props} set={SETS.ONE} data={props.sets[SETS.ONE]} />
+    <SetItem
+      {...props}
+      set={SETS.ONE}
+      data={props.sets[SETS.ONE]}
+      disabled={props.exerciseCompleted}
+    />
     <Divider />
-    <SetItem {...props} set={SETS.TWO} data={props.sets[SETS.TWO]} />
+    <SetItem
+      {...props}
+      set={SETS.TWO}
+      data={props.sets[SETS.TWO]}
+      disabled={props.exerciseCompleted}
+    />
     <Divider />
-    <SetItem {...props} set={SETS.THREE} data={props.sets[SETS.THREE]} />
+    <SetItem
+      {...props}
+      set={SETS.THREE}
+      data={props.sets[SETS.THREE]}
+      disabled={props.exerciseCompleted}
+    />
     <Divider />
-    <Button
-      onPress={() => props.onCompletePress(props.match.params.week, props.match.params.exercise)}
-      disabled={!enumerize(props.sets).allChildrenMatch({ setCompleted: true })}
-    >
-      Complete Exercise
-    </Button>
+    {
+      props.canCompleteExercise && !props.exerciseCompleted
+        ? (
+          <Button styleName="secondary" onPress={() => {props.onCompletePress(props.match.params.week, props.match.params.exercise)}}>
+            Complete Exercise
+          </Button>
+        )
+        : null
+    }
+
   </View>
 
 );
@@ -36,6 +70,8 @@ SetList.propTypes = {
   sets: PropTypes.object.isRequired,
   onCompletePress: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  canCompleteExercise: PropTypes.bool.isRequired,
+  exerciseCompleted: PropTypes.bool.isRequired,
 };
 
 SetList.defaultProps = {

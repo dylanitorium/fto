@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity } from 'react-native';
-import { Text, Row } from '@shoutem/ui';
-import { Button } from '../Button';
-
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, Row, Icon } from '@shoutem/ui';
 
 const SetItem = props => (
-  <TouchableOpacity onPress={() => props.onSetItemPress(props.match.params.week, props.match.params.exercise, props.set)}>
+  <TouchableOpacity
+    {...props}
+    onPress={() => props.onSetItemPress(
+      props.match.params.week,
+      props.match.params.exercise, props.set
+    )}
+  >
     <Row>
       <Text>{props.data.reps} x {props.data.weight}kg</Text>
-      <Button styleName={'right-icon'} icon={props.data.setCompleted ? 'checkbox-on' : 'checkbox-off'} />
+      {/* This is a hack to override the style */}
+      <Icon styleName={'disclosure'} style={{ opacity: 1 }} name={props.data.setCompleted ? 'checkbox-on' : 'checkbox-off'} />
     </Row>
   </TouchableOpacity>
 );
