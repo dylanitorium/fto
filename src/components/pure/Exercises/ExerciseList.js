@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Divider } from '@shoutem/ui';
 import ExerciseItem from './ExerciseItem';
 import { EXERCISES } from '../../../constants';
+import { CompleteButton } from '../CompleteButton';
 
 const ExerciseList = props => (
   <View>
@@ -21,6 +22,10 @@ const ExerciseList = props => (
     <ExerciseItem {...props} data={props.exercises[EXERCISES.DEADLIFT]} exercise={EXERCISES.DEADLIFT} to={`${props.match.url}/exercise/${EXERCISES.DEADLIFT}`} >
       Deadlift
     </ExerciseItem>
+    <Divider />
+    <CompleteButton {...props}>
+      Complete Week
+    </CompleteButton>
   </View>
 );
 
