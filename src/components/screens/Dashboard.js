@@ -18,7 +18,8 @@ const Dashboard = props => (
               onPress={() => {
                 props.onButtonPress(props.settings);
               }}
-            >Start Cycle</Button>
+            >Start Cycle
+          </Button>
           )
       }
     </PaddedContainer>

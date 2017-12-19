@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Divider } from '@shoutem/ui';
 import WeekItem from './WeekItem';
 import { WEEKS } from '../../../constants';
+import CompleteButton from '../CompleteButton/CompleteButton';
 
 const WeekList = props => (
   <View>
@@ -21,6 +22,10 @@ const WeekList = props => (
     <WeekItem to={`${props.match.url}week/${WEEKS.FOUR}`}>
       Week Four
     </WeekItem>
+    <Divider />
+    <CompleteButton {...props}>
+      Complete Cycle
+    </CompleteButton>
   </View>
 );
 

@@ -25,8 +25,9 @@ export const startCycle = settings => ({
   settings,
 });
 
-export const completeCycle = () => ({
-  type: types.COMPLETE_CYCLE
+export const completeCycle = cycle => ({
+  type: types.COMPLETE_CYCLE,
+  cycle,
 });
 
 export const cancelCycle = () => ({
@@ -45,8 +46,6 @@ export const completeExercise = (week, exercise) => ({
   week,
   exercise,
 });
-
-
 
 // Reducer
 const initialSetState = {

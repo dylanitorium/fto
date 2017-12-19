@@ -1761,9 +1761,9 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enumerize@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/enumerize/-/enumerize-0.0.6.tgz#f62ffde8790223b59a6957a24cef2009cebb34dc"
+enumerize@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/enumerize/-/enumerize-0.0.13.tgz#c215680c7d3b6c8c4d3e1f4e70f6cb9e3255cd8a"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"
@@ -1918,15 +1918,6 @@ eslint-plugin-jsx-a11y@^6.0.2:
 eslint-plugin-promise@^3.5.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.6.0.tgz#54b7658c8f454813dc2a870aff8152ec4969ba75"
-
-eslint-plugin-react@^7.0.1:
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.5.0.tgz#84cd4a45f179930268379e1f8fc17aedcfadd357"
-  dependencies:
-    doctrine "^2.0.0"
-    has "^1.0.1"
-    jsx-ast-utils "^2.0.0"
-    prop-types "^15.6.0"
 
 eslint-plugin-react@^7.5.1:
   version "7.5.1"

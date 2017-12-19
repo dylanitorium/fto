@@ -1,15 +1,21 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-native';
+import enumerize from 'enumerize';
 import Dashboard from '../../screens/Dashboard';
-import { startCycle } from '../../../redux/reducers/cycles';
+import { startCycle, completeCycle } from '../../../redux/reducers/cycles';
+import { WEEKS } from '../../../constants';
 
 export default withRouter(connect(
-  state => ({
+  ({ cycles: { cycle }, ...state }) => ({
     hasHistory: false,
-    cycleIsActive: state.cycles.cycle.active,
+    cycleIsActive: cycle.active,
     settings: state.settings,
+    canComplete: true,
+    completed: cycle.completed,
+    completeContext: [cycle],
   }),
   {
     onButtonPress: startCycle,
+    onCompletePress: completeCycle
   }
 )(Dashboard));

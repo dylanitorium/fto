@@ -1,5 +1,5 @@
 // Action Types
-const types = {
+export const types = {
   INITIALIZE: 'app/initialize',
 };
 
