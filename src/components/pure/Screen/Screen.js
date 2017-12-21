@@ -27,7 +27,7 @@ const Screen = props => (
     }}
   >
     <View style={[styles.container, ...props.style]}>
-      <NavBar hasHistory={props.hasHistory} screenTitle={props.screenTitle} />
+      <NavBar hasHistory={props.hasHistory} screenTitle={props.screenTitle} rightComponent={props.rightComponent} />
       <ScrollView style={[styles.content]}>
         <View style={[styles.inner]}>
           {props.children}
@@ -42,12 +42,14 @@ Screen.propTypes = {
   children: PropTypes.node.isRequired,
   style: PropTypes.array,
   hasHistory: PropTypes.bool,
+  rightComponent: PropTypes.node,
 };
 
 Screen.defaultProps = {
   screenTitle: '',
   style: [],
   hasHistory: true,
+  rightComponent: <View />
 };
 
 export default Screen;

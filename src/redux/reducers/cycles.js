@@ -5,7 +5,7 @@ import { EXERCISES, SET_MODIFIER, SET_REPS, SETS, WEEKS } from '../../constants'
 
 
 // Action Types
-const types = {
+export const types = {
   START_CYCLE: 'app/cycle/start',
   COMPLETE_CYCLE: 'app/cycle/complete',
   CANCEL_CYCLE: 'app/cycle/cancel',

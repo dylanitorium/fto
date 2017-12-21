@@ -13,6 +13,9 @@ import OnboardDeadlift from './components/connected/screens/OnboardDeadlift';
 
 import WeekScreen from './components/connected/screens/WeekScreen';
 import ExerciseScreen from './components/connected/screens/ExerciseScreen';
+import SettingsScreen from './components/connected/screens/SettingsScreen';
+import ExerciseSettingsScreen from './components/connected/screens/ExerciseSettingsScreen';
+import { EXERCISES } from './constants';
 
 
 export default () => (
@@ -20,11 +23,10 @@ export default () => (
     <PrivateRoute exact path={'/'} component={Dashboard} />
 
     <Route exact path={'/onboard'} component={Onboard} />
-    <Route path={'/onboard/bench'} component={OnboardBench} />
-    <Route path={'/onboard/squat'} component={OnboardSquat} />
-    <Route path={'/onboard/overhead'} component={OnboardOverhead} />
-    <Route path={'/onboard/deadlift'} component={OnboardDeadlift} />
-
+    <Route path={`/onboard/${EXERCISES.BENCH}`} component={OnboardBench} />
+    <Route path={`/onboard/${EXERCISES.SQUAT}`} component={OnboardSquat} />
+    <Route path={`/onboard/${EXERCISES.OVERHEAD}`} component={OnboardOverhead} />
+    <Route path={`/onboard/${EXERCISES.DEADLIFT}`} component={OnboardDeadlift} />
 
     <PrivateRoute exact path={'/week/:week'} component={WeekScreen} />
     <PrivateRoute path={'/week/:week/exercise/:exercise'} component={ExerciseScreen} />
@@ -33,7 +35,8 @@ export default () => (
     <PrivateRoute path={'/history/:cycleId/week/:week'} component={WeekScreen} />
     <PrivateRoute path={'/history/:cycleId/week/:week/exercise/:exercise'} />
 
-
-    <PrivateRoute path={'/settings'} />
+    <PrivateRoute exact path={'/settings'} component={SettingsScreen} />
+    <PrivateRoute path={'/settings/exercise/:exercise'} component={ExerciseSettingsScreen} />
+    <PrivateRoute path={'/settings/timer'} />
   </Switch>
 );

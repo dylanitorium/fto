@@ -1,6 +1,6 @@
 // Action Types
 import { EXERCISES } from '../../constants';
-import { cycleTypes } from './cycles';
+import { types as cycleTypes } from './cycles';
 
 const types = {
   UPDATE_MAX: 'app/settings/updateMax',
@@ -53,7 +53,7 @@ const exerciseReducer = (state = initialExerciseState, action) => {
         increment: action.value,
       };
     case cycleTypes.COMPLETE_CYCLE:
-      max = state.max + state.increment;
+      max = parseFloat(state.max, 10) + parseFloat(state.increment, 10);
       return {
         ...state,
         max,
@@ -75,10 +75,17 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.UPDATE_INCREMENT:
     case types.UPDATE_MAX:
-    case cycleTypes.COMPLETE_CYCLE:
       return {
         ...state,
         [action.exercise]: exerciseReducer(state[action.exercise], action)
+      };
+    case cycleTypes.COMPLETE_CYCLE:
+      return {
+        ...state,
+        [EXERCISES.BENCH]: exerciseReducer(state[EXERCISES.BENCH], action),
+        [EXERCISES.SQUAT]: exerciseReducer(state[EXERCISES.SQUAT], action),
+        [EXERCISES.OVERHEAD]: exerciseReducer(state[EXERCISES.OVERHEAD], action),
+        [EXERCISES.DEADLIFT]: exerciseReducer(state[EXERCISES.DEADLIFT], action),
       };
     default:
       return state;

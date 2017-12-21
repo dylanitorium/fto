@@ -7,7 +7,7 @@ import Button from '../pure/Button/Button';
 
 
 const Dashboard = props => (
-  <Screen {...props} screenTitle={'fivethreeone'}>
+  <Screen {...props} screenTitle={'fivethreeone'} rightComponent={<Button icon="settings" to="/settings"/>}>
     <PaddedContainer>
       {
         props.cycleIsActive
