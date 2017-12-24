@@ -4,10 +4,38 @@ export const ROUTE_MAP = {
   '/onboard/squat': 'Squat',
   '/onboard/overhead': 'Overhead',
   '/onboard/deadlift': 'Deadlift',
+  '/': 'fivethreeone',
+
   '/week/1': 'Week One',
+  '/week/1/exercise/bench': 'Bench',
+  '/week/1/exercise/squat': 'Squat',
+  '/week/1/exercise/overhead': 'Overheard',
+  '/week/1/exercise/deadlift': 'Deadlift',
+
   '/week/2': 'Week Two',
+  '/week/2/exercise/bench': 'Bench',
+  '/week/2/exercise/squat': 'Squat',
+  '/week/2/exercise/overhead': 'Overheard',
+  '/week/2/exercise/deadlift': 'Deadlift',
+
   '/week/3': 'Week Three',
+  '/week/3/exercise/bench': 'Bench',
+  '/week/3/exercise/squat': 'Squat',
+  '/week/3/exercise/overhead': 'Overheard',
+  '/week/3/exercise/deadlift': 'Deadlift',
+
   '/week/4': 'Deload Week',
+  '/week/4/exercise/bench': 'Bench',
+  '/week/4/exercise/squat': 'Squat',
+  '/week/4/exercise/overhead': 'Overheard',
+  '/week/4/exercise/deadlift': 'Deadlift',
+
+  '/settings': 'Settings',
+  '/settings/exercise/bench': 'Bench',
+  '/settings/exercise/squat': 'Squat',
+  '/settings/exercise/overhead': 'Overhead',
+  '/settings/exercise/deadlift': 'Deadlift',
+
 };
 
 export const EXERCISES = {

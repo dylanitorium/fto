@@ -4,7 +4,7 @@ import { PaddedContainer } from '../pure/PaddedContainer';
 import { SettingsList } from '../pure/Settings';
 
 const SettingsScreen = props => (
-  <Screen {...props} screenTitle={'fivethreeone'} >
+  <Screen {...props} >
     <PaddedContainer>
       <SettingsList {...props} />
     </PaddedContainer>

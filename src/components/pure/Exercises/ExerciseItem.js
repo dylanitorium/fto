@@ -21,7 +21,6 @@ const ExceriseItem = props => (
 
 ExceriseItem.propTypes = {
   children: PropTypes.node.isRequired,
-  exercise: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired
 };
 

@@ -5,6 +5,7 @@ import { updateIncrement, updateMax } from '../../../redux/reducers/settings';
 
 export default connect(
   state => ({
+    screenTitle: EXERCISES.BENCH,
     exercise: EXERCISES.BENCH,
     maxValue: state.settings[EXERCISES.BENCH].max,
     workingMaxValue: state.settings[EXERCISES.BENCH].workingMax,

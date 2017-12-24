@@ -5,7 +5,7 @@ import { ROUTE_MAP } from '../../constants';
 
 const ConnectedNavBar = withRouter(connect(
   (state, ownProps) => ({
-    screenTitle: ROUTE_MAP[ownProps.match.path] || 'fivethreeone',
+    screenTitle: ROUTE_MAP[ownProps.match.url],
   })
 )(NavBar));
 

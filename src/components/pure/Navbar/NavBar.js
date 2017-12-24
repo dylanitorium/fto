@@ -17,9 +17,9 @@ const NavBar = (props) => {
 
   return (
     <NavigationBar
+      {...props}
       leftComponent={leftComponent}
       centerComponent={<Title>{props.screenTitle.toUpperCase()}</Title>}
-      {...props}
     />
   )
 };
@@ -30,7 +30,6 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
-  screenTitle: 'fivethreeone'
 };
 
 export default NavBar;

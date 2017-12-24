@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Divider } from '@shoutem/ui';
+import { View, Divider, Caption } from '@shoutem/ui';
 import SetItem from './SetItem';
 import { CompleteButton } from '../CompleteButton';
 import { SETS } from '../../../constants';
 
 const SetList = props => (
   <View>
+    <Divider styleName="section-header">
+      <Caption>WARM UP</Caption>
+    </Divider>
     <SetItem
       {...props}
       set={SETS.WARM_UP_ONE}
@@ -28,6 +31,9 @@ const SetList = props => (
       disabled={props.completed}
     />
     <Divider />
+    <Divider styleName="section-header">
+      <Caption>WORKING</Caption>
+    </Divider>
     <SetItem
       {...props}
       set={SETS.ONE}

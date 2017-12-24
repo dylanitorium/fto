@@ -7,6 +7,7 @@ import { initialize } from '../../../redux/reducers/app';
 
 export default connect(
   state => ({
+    screenTitle: EXERCISES.DEADLIFT,
     exercise: EXERCISES.DEADLIFT,
     maxValue: state.settings[EXERCISES.DEADLIFT].max,
     workingMaxValue: state.settings[EXERCISES.DEADLIFT].workingMax,

@@ -5,7 +5,7 @@ import { ExerciseList } from '../pure/Exercises';
 import { Button } from '../pure/Button';
 
 const WeekScreen = props => (
-  <Screen {...props} screenTitle={'fivethreeone'} rightComponent={<Button icon="settings" to="/settings" />}>
+  <Screen {...props} rightComponent={<Button icon="settings" to="/settings" />}>
     <PaddedContainer>
       <ExerciseList {...props} />
     </PaddedContainer>

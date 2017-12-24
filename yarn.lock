@@ -1761,9 +1761,9 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enumerize@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/enumerize/-/enumerize-0.0.13.tgz#c215680c7d3b6c8c4d3e1f4e70f6cb9e3255cd8a"
+enumerize@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/enumerize/-/enumerize-0.0.14.tgz#8f5522c54c7e2846d0936248074d34a558ad8486"
   dependencies:
     babel-cli "^6.26.0"
     babel-core "^6.26.0"
