@@ -7,6 +7,7 @@ import { PaddedContainer } from '../pure/PaddedContainer';
 import { WeekList } from '../pure/Weeks';
 import { Button } from '../pure/Button';
 import { AlertButton } from '../pure/AlertButton';
+import { HistoryList } from '../pure/History';
 
 
 const Dashboard = props => (
@@ -17,7 +18,7 @@ const Dashboard = props => (
           ? (
             <View>
               <WeekList {...props} />
-              <Divider />
+
               <AlertButton
                 styleName="secondary"
                 alertTitle={'Cancel Cycle'}
@@ -40,6 +41,10 @@ const Dashboard = props => (
             </Button>
           )
       }
+      <Divider />
+      {
+        props.history.length ? <HistoryList {...props} /> : <View />
+      }
     </PaddedContainer>
   </Screen>
 );
@@ -49,6 +54,7 @@ Dashboard.propTypes = {
   settings: PropTypes.object.isRequired,
   onStartPress: PropTypes.func.isRequired,
   onCancelPress: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default Dashboard;

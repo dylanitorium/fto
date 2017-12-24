@@ -16,6 +16,7 @@ import ExerciseScreen from './components/connected/screens/ExerciseScreen';
 import SettingsScreen from './components/connected/screens/SettingsScreen';
 import ExerciseSettingsScreen from './components/connected/screens/ExerciseSettingsScreen';
 import { EXERCISES } from './constants';
+import ArchivedCycle from './components/connected/screens/ArchivedCycle';
 
 
 export default () => (
@@ -31,9 +32,9 @@ export default () => (
     <PrivateRoute exact path={'/week/:week'} component={WeekScreen} />
     <PrivateRoute path={'/week/:week/exercise/:exercise'} component={ExerciseScreen} />
 
-    <PrivateRoute path={'/history/:cycleId'} />
-    <PrivateRoute path={'/history/:cycleId/week/:week'} component={WeekScreen} />
-    <PrivateRoute path={'/history/:cycleId/week/:week/exercise/:exercise'} />
+    <PrivateRoute exact path={'/history/:cycleId'} component={ArchivedCycle} />
+    <PrivateRoute exact path={'/history/:cycleId/week/:week'} component={WeekScreen} />
+    <PrivateRoute path={'/history/:cycleId/week/:week/exercise/:exercise'} component={ExerciseScreen} />
 
     <PrivateRoute exact path={'/settings'} component={SettingsScreen} />
     <PrivateRoute path={'/settings/exercise/:exercise'} component={ExerciseSettingsScreen} />

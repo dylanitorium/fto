@@ -7,8 +7,8 @@ import { completeWeek } from '../../../redux/reducers/cycles';
 
 export default withRouter(connect(
   (state, ownProps) => {
-    const { match: { params: { week } } } = ownProps;
-    const { weekCompleted, ...exercises } = state.cycles.cycle[week];
+    const { match: { params: { week, cycleId } } } = ownProps;
+    const { weekCompleted, ...exercises } = cycleId ? state.cycles.history[cycleId][week] : state.cycles.cycle[week];
     return {
       exercises,
       canComplete: enumerize(exercises).allChildrenMatch({ exerciseCompleted: true }),

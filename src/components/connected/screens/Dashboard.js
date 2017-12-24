@@ -7,9 +7,10 @@ import { WEEKS } from '../../../constants';
 
 
 export default withRouter(connect(
-  ({ cycles: { cycle }, ...state }) => ({
+  ({ cycles: { cycle, history }, ...state }) => ({
     cycle,
     hasHistory: false,
+    history: enumerize(history),
     cycleIsActive: cycle.active,
     settings: state.settings,
     canComplete: cycle.active

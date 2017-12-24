@@ -7,9 +7,8 @@ import { completeExercise, toggleSet } from '../../../redux/reducers/cycles';
 
 export default withRouter(connect(
   (state, ownProps) => {
-    const { match: { params: { week, exercise } } } = ownProps;
-    const { exerciseCompleted, ...sets } = state.cycles.cycle[week][exercise];
-
+    const { match: { params: { week, exercise, cycleId } } } = ownProps;
+    const { exerciseCompleted, ...sets } = cycleId ? state.cycles.history[cycleId][week][exercise] : state.cycles.cycle[week][exercise];
     return {
       sets,
       canComplete: enumerize(sets).allChildrenMatch({ setCompleted: true }),
