@@ -3,8 +3,17 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { Text, Row, Icon } from '@shoutem/ui';
 import { Linkable } from '../../utility';
-import { Button } from '../Button';
 
+const getStyles = completed => (
+  completed
+    ? {
+      opacity: 1,
+      color: '#43A047',
+    }
+    : {
+      opacity: 1,
+    }
+);
 
 const ExceriseItem = props => (
   <TouchableOpacity {...props}>
@@ -12,7 +21,7 @@ const ExceriseItem = props => (
       <Text>{props.children}</Text>
       {
         props.data.exerciseCompleted
-          ? (<Button styleName="right-icon" icon="checkbox-on" />)
+          ? (<Icon styleName="disclosure" style={getStyles(props.completed)} name="checkbox-on" />)
           : (<Icon styleName="disclosure" name="right-arrow" />)
       }
     </Row>
@@ -21,7 +30,8 @@ const ExceriseItem = props => (
 
 ExceriseItem.propTypes = {
   children: PropTypes.node.isRequired,
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  completed: PropTypes.bool.isRequired,
 };
 
 ExceriseItem.defaultProps = {

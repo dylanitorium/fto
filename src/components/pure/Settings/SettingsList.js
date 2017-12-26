@@ -27,12 +27,6 @@ const SettingsList = props => (
       Deadlift
     </SettingsItem>
     <Divider />
-    <Divider styleName="section-header">
-      <Caption>OTHER</Caption>
-    </Divider>
-    <SettingsItem to={`${props.match.url}/timer`}>
-      Timer
-    </SettingsItem>
   </View>
 );
 

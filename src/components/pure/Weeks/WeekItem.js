@@ -3,7 +3,17 @@ import PropTypes from 'prop-types';
 import { Text, Row, Icon } from '@shoutem/ui';
 import { TouchableOpacity } from 'react-native';
 import { Linkable } from '../../utility';
-import { Button } from '../Button';
+
+const getStyles = completed => (
+  completed
+    ? {
+      opacity: 1,
+      color: '#43A047',
+    }
+    : {
+      opacity: 1,
+    }
+);
 
 const WeekItem = props => (
   <TouchableOpacity {...props}>
@@ -11,7 +21,7 @@ const WeekItem = props => (
       <Text>{props.children}</Text>
       {
         props.data.weekCompleted
-          ? (<Button styleName="right-icon" icon="checkbox-on" />)
+          ? (<Icon styleName="disclosure" style={getStyles(props.completed)} name="checkbox-on" />)
           : (<Icon styleName="disclosure" name="right-arrow" />)
       }
     </Row>
@@ -22,6 +32,7 @@ WeekItem.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   data: PropTypes.object.isRequired,
+  completed: PropTypes.bool.isRequired,
 };
 
 WeekItem.defaultProps = {

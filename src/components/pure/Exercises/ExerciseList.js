@@ -7,19 +7,19 @@ import { CompleteButton } from '../CompleteButton';
 
 const ExerciseList = props => (
   <View>
-    <ExerciseItem {...props} data={props.exercises[EXERCISES.BENCH]} to={`${props.match.url}/exercise/${EXERCISES.BENCH}`} >
+    <ExerciseItem {...props} data={props.exercises[EXERCISES.BENCH]} to={`${props.match.url}/exercise/${EXERCISES.BENCH}`} completed={props.completed}>
       Bench
     </ExerciseItem>
     <Divider />
-    <ExerciseItem {...props} data={props.exercises[EXERCISES.SQUAT]} to={`${props.match.url}/exercise/${EXERCISES.SQUAT}`} >
+    <ExerciseItem {...props} data={props.exercises[EXERCISES.SQUAT]} to={`${props.match.url}/exercise/${EXERCISES.SQUAT}`} completed={props.completed}>
       Squat
     </ExerciseItem>
     <Divider />
-    <ExerciseItem {...props} data={props.exercises[EXERCISES.OVERHEAD]} to={`${props.match.url}/exercise/${EXERCISES.OVERHEAD}`} >
+    <ExerciseItem {...props} data={props.exercises[EXERCISES.OVERHEAD]} to={`${props.match.url}/exercise/${EXERCISES.OVERHEAD}`} completed={props.completed}>
       Overhead
     </ExerciseItem>
     <Divider />
-    <ExerciseItem {...props} data={props.exercises[EXERCISES.DEADLIFT]} to={`${props.match.url}/exercise/${EXERCISES.DEADLIFT}`} >
+    <ExerciseItem {...props} data={props.exercises[EXERCISES.DEADLIFT]} to={`${props.match.url}/exercise/${EXERCISES.DEADLIFT}`} completed={props.completed}>
       Deadlift
     </ExerciseItem>
     <Divider />
@@ -32,6 +32,7 @@ const ExerciseList = props => (
 ExerciseList.propTypes = {
   match: PropTypes.object.isRequired,
   exercises: PropTypes.object.isRequired,
+  completed: PropTypes.bool.isRequired,
 };
 
 ExerciseList.defaultProps = {
@@ -39,4 +40,3 @@ ExerciseList.defaultProps = {
 };
 
 export default ExerciseList;
-

@@ -18,7 +18,7 @@ const Dashboard = props => (
           ? (
             <View>
               <WeekList {...props} />
-
+              <Divider />
               <AlertButton
                 styleName="secondary"
                 alertTitle={'Cancel Cycle'}

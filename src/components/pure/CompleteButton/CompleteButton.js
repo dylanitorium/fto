@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../Button';
 
+const styles = {
+  backgroundColor: '#43A047',
+  borderColor: '#43A047',
+};
+
 const CompleteButton = props => (
   props.canComplete && !props.completed
     ? (
-      <Button styleName="secondary" onPress={() => props.onCompletePress(...props.completeContext)}>
+      <Button styleName="secondary" style={styles} onPress={() => props.onCompletePress(...props.completeContext)}>
         { props.children }
       </Button>
     )
