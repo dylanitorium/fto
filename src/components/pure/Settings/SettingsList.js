@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
-import { Caption, Divider } from '@shoutem/ui';
+import { View, Linking, TouchableOpacity } from 'react-native';
+import { Caption, Divider, Text } from '@shoutem/ui';
 import SettingsItem from './SettingsItem';
 import { EXERCISES } from '../../../constants';
 
+const styles = {
+  textDecorationLine: 'underline',
+  color: '#2196F3',
+};
+
+const buyMeABeer = () => {
+  Linking.openURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=23NNWWCDLLYXA');
+};
 
 const SettingsList = props => (
   <View>
@@ -27,6 +35,13 @@ const SettingsList = props => (
       Deadlift
     </SettingsItem>
     <Divider />
+    <Divider />
+    <TouchableOpacity onPress={buyMeABeer}>
+      <Text style={styles}>
+        If you like fivethreeone, feel free to
+        buy me a beer
+      </Text>
+    </TouchableOpacity>
   </View>
 );
 

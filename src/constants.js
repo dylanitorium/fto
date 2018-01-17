@@ -64,7 +64,7 @@ export const SETS = {
 export const WARM_UP_REPS = {
   [SETS.WARM_UP_ONE]: 5,
   [SETS.WARM_UP_TWO]: 5,
-  [SETS.WARM_UP_THREE]: 5,
+  [SETS.WARM_UP_THREE]: 3,
 };
 
 export const WARM_UP_MODIFIER = {
@@ -126,4 +126,3 @@ export const SET_MODIFIER = {
     [SETS.THREE]: 0.6,
   },
 };
-
