@@ -48,7 +48,7 @@ const exerciseReducer = (state = initialExerciseState, action) => {
   let max;
   switch (action.type) {
     case types.UPDATE_MEASUREMENT_SYSTEM:
-      console.log("asdas")
+
       return {
         max: SYSTEM_CONVERSIONS[action.system](state.max),
         workingMax: calculateWorkingMax(SYSTEM_CONVERSIONS[action.system](state.workingMax)),

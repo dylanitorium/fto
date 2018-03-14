@@ -9,7 +9,7 @@ export default connect(
     imperialSelected: state.settings.measurementSystem === MEASUREMENT_SYSTEMS.IMPERIAL
   }),
   {
-    selectMetric: updateMeasurementSystem(MEASUREMENT_SYSTEMS.METRIC),
-    selectImperial: updateMeasurementSystem(MEASUREMENT_SYSTEMS.IMPERIAL),
+    selectMetric: () => dispatch => dispatch(updateMeasurementSystem(MEASUREMENT_SYSTEMS.METRIC)),
+    selectImperial: () => dispatch => dispatch(updateMeasurementSystem(MEASUREMENT_SYSTEMS.IMPERIAL)),
   }
 )(OnboardMeasurementSystem);
