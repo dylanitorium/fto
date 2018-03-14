@@ -15,18 +15,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const Onboard = props => (
+const OnboardMeasurementSystem = props => (
   <Screen {...props} style={[styles.screen]} screenTitle={'fivethreeone'}>
     <PaddedContainer>
       <Text>
-        {'It looks like you\'re new to fivethreeone. Let\'s enter your weights to get started.'}
+        {'First, select whether you would like to use metric or imperial units'}
       </Text>
       <Divider />
-      <Button to={'/onboard/units'} styleName="secondary">
-        Go
+      <Divider />
+      <Button onPress={props.selectMetric} styleName={ props.metricSelected ? 'secondary' : undefined }> Metric </Button>
+      <Divider />
+      <Button onPress={props.selectImperial} styleName={ props.imperialSelected ? 'secondary' : undefined }> Imperial </Button>
+      <Divider />
+      <Divider />
+      <Button to={'/onboard/bench'} styleName="secondary">
+        Next
       </Button>
     </PaddedContainer>
   </Screen>
 );
 
-export default Onboard;
+export default OnboardMeasurementSystem;

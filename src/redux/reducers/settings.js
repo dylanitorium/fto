@@ -1,10 +1,11 @@
 // Action Types
-import { EXERCISES } from '../../constants';
+import { EXERCISES, MEASUREMENT_SYSTEMS, SYSTEM_CONVERSIONS } from '../../constants';
 import { types as cycleTypes } from './cycles';
 
 const types = {
   UPDATE_MAX: 'app/settings/updateMax',
   UPDATE_INCREMENT: 'app/settings/updateIncrement',
+  UPDATE_MEASUREMENT_SYSTEM: 'app/settings/updateMeasurementSystem',
 };
 
 // Action Creators
@@ -12,6 +13,11 @@ export const updateMax = (exercise, value) => ({
   type: types.UPDATE_MAX,
   exercise,
   value
+});
+
+export const updateMeasurementSystem = system => ({
+  type: types.UPDATE_MEASUREMENT_SYSTEM,
+  system
 });
 
 export const updateIncrement = (exercise, value) => ({
@@ -41,6 +47,13 @@ const initialExerciseState = {
 const exerciseReducer = (state = initialExerciseState, action) => {
   let max;
   switch (action.type) {
+    case types.UPDATE_MEASUREMENT_SYSTEM:
+      console.log("asdas")
+      return {
+        max: SYSTEM_CONVERSIONS[action.system](state.max),
+        workingMax: calculateWorkingMax(SYSTEM_CONVERSIONS[action.system](state.workingMax)),
+        increment: SYSTEM_CONVERSIONS[action.system](state.increment)
+      };
     case types.UPDATE_MAX:
       return {
         ...state,
@@ -65,6 +78,7 @@ const exerciseReducer = (state = initialExerciseState, action) => {
 };
 
 const initialState = {
+  measurementSystem: MEASUREMENT_SYSTEMS.METRIC,
   [EXERCISES.BENCH]: initialExerciseState,
   [EXERCISES.SQUAT]: initialExerciseState,
   [EXERCISES.OVERHEAD]: initialExerciseState,
@@ -73,6 +87,15 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.UPDATE_MEASUREMENT_SYSTEM:
+      return {
+        ...state,
+        measurementSystem: action.system,
+        [EXERCISES.BENCH]: exerciseReducer(state[EXERCISES.BENCH], action),
+        [EXERCISES.SQUAT]: exerciseReducer(state[EXERCISES.SQUAT], action),
+        [EXERCISES.OVERHEAD]: exerciseReducer(state[EXERCISES.OVERHEAD], action),
+        [EXERCISES.DEADLIFT]: exerciseReducer(state[EXERCISES.DEADLIFT], action),
+      };
     case types.UPDATE_INCREMENT:
     case types.UPDATE_MAX:
       return {

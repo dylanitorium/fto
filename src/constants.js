@@ -126,3 +126,13 @@ export const SET_MODIFIER = {
     [SETS.THREE]: 0.6,
   },
 };
+
+export const MEASUREMENT_SYSTEMS = {
+  IMPERIAL: 'IMPERIAL',
+  METRIC: 'METRIC',
+}
+
+export const SYSTEM_CONVERSIONS = {
+  [MEASUREMENT_SYSTEMS.IMPERIAL]: value => value,
+  [MEASUREMENT_SYSTEMS.METRIC]: value => value,
+}

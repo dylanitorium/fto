@@ -10,7 +10,7 @@ const HistoryItem = props => (
   <TouchableOpacity {...props}>
     <Row >
       <Text>
-        Ended: {moment(props.cycle.endDate).format('DD-MM-YYYY')}
+        Ended: {moment(props.cycle.finishDate).format('DD-MM-YYYY')}
       </Text>
       <Icon styleName="disclosure" name="right-arrow" />
     </Row>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, Divider } from '@shoutem/ui/';
+import { Divider } from '@shoutem/ui/';
 import { SetWeightsForm } from '../pure/SetWeightsForm';
 import { Screen } from '../pure/Screen';
 import PaddedContainer from '../pure/PaddedContainer/PaddedContainer';

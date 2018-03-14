@@ -74,4 +74,3 @@ SetList.defaultProps = {
 };
 
 export default SetList;
-

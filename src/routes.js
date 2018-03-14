@@ -6,6 +6,7 @@ import PrivateRoute from './components/connected/PrivateRoute';
 import Dashboard from './components/connected/screens/Dashboard';
 
 import Onboard from './components/connected/screens/Onboard';
+import OnboardMeasurementSystem from './components/connected/screens/OnboardMeasurementSystem';
 import OnboardBench from './components/connected/screens/OnboardBench';
 import OnboardSquat from './components/connected/screens/OnboardSquat';
 import OnboardOverhead from './components/connected/screens/OnboardOverhead';
@@ -24,6 +25,7 @@ export default () => (
     <PrivateRoute exact path={'/'} component={Dashboard} />
 
     <Route exact path={'/onboard'} component={Onboard} />
+    <Route path={'/onboard/units'} component={OnboardMeasurementSystem} />
     <Route path={`/onboard/${EXERCISES.BENCH}`} component={OnboardBench} />
     <Route path={`/onboard/${EXERCISES.SQUAT}`} component={OnboardSquat} />
     <Route path={`/onboard/${EXERCISES.OVERHEAD}`} component={OnboardOverhead} />

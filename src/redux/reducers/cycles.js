@@ -279,7 +279,6 @@ const cycle = (state = initialCycleState, action) => {
         ...reduceAllWeeks(state, action),
         complete: true,
         active: false,
-        finishDate: moment(),
       };
     case types.CANCEL_CYCLE:
       return initialCycleState;
@@ -310,7 +309,10 @@ const history = (state = initialHistoryState, action) => {
     case types.COMPLETE_CYCLE:
       return {
         ...state,
-        [action.cycle.cycleId]: action.cycle,
+        [action.cycle.cycleId]: {
+          ...action.cycle,
+          finishDate: moment(),
+        }
       };
     default:
       return state;
