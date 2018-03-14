@@ -130,9 +130,9 @@ export const SET_MODIFIER = {
 export const MEASUREMENT_SYSTEMS = {
   IMPERIAL: 'IMPERIAL',
   METRIC: 'METRIC',
-}
+};
 
 export const SYSTEM_CONVERSIONS = {
-  [MEASUREMENT_SYSTEMS.IMPERIAL]: value => value,
-  [MEASUREMENT_SYSTEMS.METRIC]: value => value,
-}
+  [MEASUREMENT_SYSTEMS.IMPERIAL]: value => value * 2.20462,
+  [MEASUREMENT_SYSTEMS.METRIC]: value => value * 0.45392,
+};

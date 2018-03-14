@@ -1,7 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import OnboardSettings from '../../screens/OnboardSettings';
-import { EXERCISES } from '../../../constants';
+import { EXERCISES, MEASUREMENT_SYSTEMS } from '../../../constants';
 import { updateIncrement, updateMax } from '../../../redux/reducers/settings';
 
 export default connect(
@@ -12,10 +11,10 @@ export default connect(
     workingMaxValue: state.settings[EXERCISES.OVERHEAD].workingMax,
     incrementValue: state.settings[EXERCISES.OVERHEAD].increment,
     next: `/onboard/${EXERCISES.DEADLIFT}`,
+    unit: state.settings.measurementSystem === MEASUREMENT_SYSTEMS.IMPERIAL ? '(lb)' : '(kg)',
   }),
   {
     onMaxChange: updateMax,
     onIncrementChange: updateIncrement,
   },
 )(OnboardSettings);
-

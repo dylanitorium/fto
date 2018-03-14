@@ -6,7 +6,7 @@ import { InputLabel } from '../InputLabel';
 
 const SetWeightsForm = props => (
   <View>
-    <InputLabel>{'One Rep Max'}</InputLabel>
+    <InputLabel>{`One Rep Max ${props.unit}`}</InputLabel>
     <TextInput
       keyboardType={'numeric'}
       placeholder={'One Rep Max'}
@@ -14,7 +14,7 @@ const SetWeightsForm = props => (
       value={props.maxValue.toString()}
     />
     <Divider />
-    <InputLabel>{'Working Max (calculated)'}</InputLabel>
+    <InputLabel>{`Working Max (calculated)${props.unit}`}</InputLabel>
     <TextInput
       keyboardType={'numeric'}
       placeholder={'Working Max'}
@@ -22,7 +22,7 @@ const SetWeightsForm = props => (
       editable={false}
     />
     <Divider />
-    <InputLabel>{'Cycle Increment'}</InputLabel>
+    <InputLabel>{`Cycle Increment ${props.unit}`}</InputLabel>
     <TextInput
       keyboardType={'numeric'}
       placeholder={'Cycle Increment'}
@@ -48,6 +48,7 @@ SetWeightsForm.propTypes = {
   ]).isRequired,
   onMaxChange: PropTypes.func.isRequired,
   onIncrementChange: PropTypes.func.isRequired,
+  unit: PropTypes.string.isRequired,
 };
 
 export default SetWeightsForm;

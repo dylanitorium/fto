@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { Text, Divider } from '@shoutem/ui';
 import { Screen } from '../pure/Screen';
@@ -23,9 +24,9 @@ const OnboardMeasurementSystem = props => (
       </Text>
       <Divider />
       <Divider />
-      <Button onPress={props.selectMetric} styleName={ props.metricSelected ? 'secondary' : undefined }> Metric </Button>
+      <Button onPress={props.selectMetric} styleName={props.metricSelected ? 'secondary' : undefined}> Metric </Button>
       <Divider />
-      <Button onPress={props.selectImperial} styleName={ props.imperialSelected ? 'secondary' : undefined }> Imperial </Button>
+      <Button onPress={props.selectImperial} styleName={props.imperialSelected ? 'secondary' : undefined}> Imperial </Button>
       <Divider />
       <Divider />
       <Button to={'/onboard/bench'} styleName="secondary">
@@ -34,5 +35,12 @@ const OnboardMeasurementSystem = props => (
     </PaddedContainer>
   </Screen>
 );
+
+OnboardMeasurementSystem.propTypes = {
+  selectMetric: PropTypes.func.isRequired,
+  metricSelected: PropTypes.bool.isRequired,
+  selectImperial: PropTypes.func.isRequired,
+  imperialSelected: PropTypes.bool.isRequired,
+};
 
 export default OnboardMeasurementSystem;

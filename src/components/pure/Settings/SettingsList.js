@@ -4,6 +4,7 @@ import { View, Linking, TouchableOpacity } from 'react-native';
 import { Caption, Divider, Text } from '@shoutem/ui';
 import SettingsItem from './SettingsItem';
 import { EXERCISES } from '../../../constants';
+import { Button } from '../Button';
 
 const styles = {
   textDecorationLine: 'underline',
@@ -35,6 +36,13 @@ const SettingsList = props => (
       Deadlift
     </SettingsItem>
     <Divider />
+    <Divider styleName="section-header">
+      <Caption>Units</Caption>
+    </Divider>
+    <Button onPress={props.selectMetric} styleName={props.metricSelected ? 'secondary' : undefined}> Metric </Button>
+    <Divider />
+    <Button onPress={props.selectImperial} styleName={props.imperialSelected ? 'secondary' : undefined}> Imperial </Button>
+    <Divider />
     <Divider />
     <TouchableOpacity onPress={buyMeABeer}>
       <Text style={styles}>
@@ -47,6 +55,10 @@ const SettingsList = props => (
 
 SettingsList.propTypes = {
   match: PropTypes.object.isRequired,
+  selectMetric: PropTypes.func.isRequired,
+  metricSelected: PropTypes.bool.isRequired,
+  selectImperial: PropTypes.func.isRequired,
+  imperialSelected: PropTypes.bool.isRequired,
 };
 
 export default SettingsList;

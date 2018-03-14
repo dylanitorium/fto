@@ -23,7 +23,7 @@ const SetItem = props => (
     )}
   >
     <Row>
-      <Text>{props.data.reps} x {props.data.weight}kg</Text>
+      <Text>{props.data.reps} x {props.data.weight}{props.unit}</Text>
       <Icon styleName={'disclosure'} style={getStyles(props.disabled)} name={props.data.setCompleted ? 'checkbox-on' : 'checkbox-off'} />
     </Row>
   </TouchableOpacity>
