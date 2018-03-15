@@ -1,7 +1,8 @@
 
 import md5 from 'md5';
 import moment from 'moment';
-import { EXERCISES, SET_MODIFIER, SET_REPS, SETS, WEEKS } from '../../constants';
+import { EXERCISES, SET_MODIFIER, SET_REPS, SETS, WEEKS, SYSTEM_CONVERSIONS } from '../../constants';
+import { types as settingsActionTypes } from './settings';
 
 
 // Action Types
@@ -101,6 +102,11 @@ const createSetReducer = (week, exersise, set) => ((state = initialSetState, act
         repsCompleted: 0,
         setCompleted: false,
       };
+    case settingsActionTypes.UPDATE_MEASUREMENT_SYSTEM:
+      return {
+        ...state,
+        weight: SYSTEM_CONVERSIONS[action.system](state.weight),
+      };
     case types.TOGGLE_SET:
       return {
         ...state,
@@ -157,6 +163,11 @@ const createExerciseReducer = (week, exercise) => ((state = initialExerciseState
       return {
         ...state,
         [action.set]: createSetReducer(week, exercise, action.set)(state[action.set], action),
+      };
+    case settingsActionTypes.UPDATE_MEASUREMENT_SYSTEM:
+      return {
+        ...state,
+        ...reduceAllSets(state, action, week, exercise),
       };
     case types.START_CYCLE:
       return {
@@ -220,6 +231,11 @@ const createWeekReducer = week => ((state = initialWeekState, action) => {
         ...state,
         [action.exercise]: createExerciseReducer(action.week, action.exercise)(state[action.exercise], action),
       };
+    case settingsActionTypes.UPDATE_MEASUREMENT_SYSTEM:
+      return {
+        ...state,
+        ...reduceAllExercises(state, action, week),
+      }
     default:
       return state;
   }
@@ -285,10 +301,14 @@ const cycle = (state = initialCycleState, action) => {
     case types.TOGGLE_SET:
     case types.COMPLETE_WEEK:
     case types.COMPLETE_EXERCISE:
-
       return {
         ...state,
         [action.week]: createWeekReducer(action.week)(state[action.week], action),
+      };
+    case settingsActionTypes.UPDATE_MEASUREMENT_SYSTEM:
+      return {
+        ...state,
+        ...reduceAllWeeks(state, action),
       };
     default:
       return state;
@@ -332,6 +352,7 @@ export default (state = initialState, action) => {
     case types.TOGGLE_SET:
     case types.COMPLETE_WEEK:
     case types.COMPLETE_EXERCISE:
+    case settingsActionTypes.UPDATE_MEASUREMENT_SYSTEM:
       return {
         ...state,
         cycle: cycle(state.cycle, action),

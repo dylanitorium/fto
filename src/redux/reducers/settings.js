@@ -2,7 +2,7 @@
 import { EXERCISES, MEASUREMENT_SYSTEMS, SYSTEM_CONVERSIONS } from '../../constants';
 import { types as cycleTypes } from './cycles';
 
-const types = {
+export const types = {
   UPDATE_MAX: 'app/settings/updateMax',
   UPDATE_INCREMENT: 'app/settings/updateIncrement',
   UPDATE_MEASUREMENT_SYSTEM: 'app/settings/updateMeasurementSystem',
