@@ -37,7 +37,7 @@ const SettingsList = props => (
     </SettingsItem>
     <Divider />
     <Divider styleName="section-header">
-      <Caption>Units</Caption>
+      <Caption>UNITS</Caption>
     </Divider>
     <Button onPress={props.selectMetric} styleName={props.metricSelected ? 'secondary' : undefined}> Metric </Button>
     <Divider />
