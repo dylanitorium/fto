@@ -56,26 +56,19 @@ const initialSetState = {
   setCompleted: false,
 };
 
-/**
- *
- * @param weight
- * @param modifier
- * @returns {*}
- */
-const calculateWeight = (weight, modifier) => {
+export const roundToNearestPlates = (value) => {
   const roundingFactor = 2.5;
-  const rawNumber = (parseFloat(weight) * parseFloat(modifier));
-  const rawFactorial = rawNumber / roundingFactor;
+  const rawFactorial = value / roundingFactor;
   const percentageOfNextRound = parseFloat(rawFactorial - Math.floor(rawFactorial)).toFixed(3);
   let result;
   let fill;
 
   if (percentageOfNextRound >= 0.5) {
     fill = ((1 - percentageOfNextRound) * roundingFactor);
-    result = (rawNumber + fill).toFixed(1);
+    result = (value + fill).toFixed(1);
   } else {
     fill = (percentageOfNextRound * roundingFactor);
-    result = (rawNumber - fill).toFixed(1);
+    result = (value - fill).toFixed(1);
   }
 
   if (result.slice('-1') === '0') {
@@ -83,6 +76,17 @@ const calculateWeight = (weight, modifier) => {
   }
 
   return result;
+}
+
+/**
+ *
+ * @param weight
+ * @param modifier
+ * @returns {*}
+ */
+export const calculateWeight = (weight, modifier) => {
+  const rawNumber = (parseFloat(weight) * parseFloat(modifier));
+  return roundToNearestPlates(rawNumber);
 };
 
 /**
@@ -105,7 +109,7 @@ const createSetReducer = (week, exersise, set) => ((state = initialSetState, act
     case settingsActionTypes.UPDATE_MEASUREMENT_SYSTEM:
       return {
         ...state,
-        weight: SYSTEM_CONVERSIONS[action.system](state.weight),
+        weight: roundToNearestPlates(SYSTEM_CONVERSIONS[action.system](state.weight)),
       };
     case types.TOGGLE_SET:
       return {

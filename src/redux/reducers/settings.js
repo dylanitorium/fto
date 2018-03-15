@@ -1,6 +1,6 @@
 // Action Types
 import { EXERCISES, MEASUREMENT_SYSTEMS, SYSTEM_CONVERSIONS } from '../../constants';
-import { types as cycleTypes } from './cycles';
+import { types as cycleTypes, roundToNearestPlates } from './cycles';
 
 export const types = {
   UPDATE_MAX: 'app/settings/updateMax',
@@ -50,9 +50,9 @@ const exerciseReducer = (state = initialExerciseState, action) => {
     case types.UPDATE_MEASUREMENT_SYSTEM:
 
       return {
-        max: SYSTEM_CONVERSIONS[action.system](state.max),
-        workingMax: calculateWorkingMax(SYSTEM_CONVERSIONS[action.system](state.workingMax)),
-        increment: SYSTEM_CONVERSIONS[action.system](state.increment)
+        max: roundToNearestPlates(SYSTEM_CONVERSIONS[action.system](state.max)),
+        workingMax: roundToNearestPlates(calculateWorkingMax(SYSTEM_CONVERSIONS[action.system](state.workingMax))),
+        increment: roundToNearestPlates(SYSTEM_CONVERSIONS[action.system](state.increment)),
       };
     case types.UPDATE_MAX:
       return {
